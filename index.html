@@ -24,13 +24,16 @@
         }
         h1 {
             color: #000851;
-            font-size: 2.5em;
+            font-size: 2em;
             margin-bottom: 10px;
+            line-height: 1.2;
+            text-align: center;
         }
         h2 {
             color: #1cb5e0;
-            font-size: 1.8em;
+            font-size: 1.5em;
             margin-bottom: 20px;
+            text-align: center;
         }
         img {
             max-width: 100%;
@@ -43,54 +46,6 @@
         p {
             margin-bottom: 20px;
             font-size: 1.1em;
-        }
-        #chatWindow {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 400px;
-            height: 600px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-        .chat-icon {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #1cb5e0;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .chat-icon:hover {
-            transform: scale(1.1);
-        }
-        .chat-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        .chat-icon-title {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #000851;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 14px;
-            white-space: nowrap;
         }
     </style>
 </head>
@@ -106,70 +61,53 @@
         <p>Pelé, soccer's world ambassador and one of the greatest players in any sport, died on December 29th in São Paulo, Brazil.</p>
     </div>
 
-    <div id="chatWindow"></div>
-    <div class="chat-icon" id="chatIcon">
-        <div class="chat-icon-title">Chat with Pelé</div>
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-            <path d="M0 0h24v24H0z" fill="none"/>
-        </svg>
-    </div>
-
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
-        const chatIcon = document.getElementById('chatIcon');
-        const chatWindow = document.getElementById('chatWindow');
-        let chatbotInitialized = false;
-
-        chatIcon.addEventListener('click', () => {
-            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
-                chatWindow.style.display = 'block';
-                chatIcon.style.display = 'none';
-                if (!chatbotInitialized) {
-                    initializeChatbot();
-                    chatbotInitialized = true;
-                }
-            }
-        });
-
-        function initializeChatbot() {
-            Chatbot.init({
-                chatflowid: "2f5fb3e5-cb2e-4ef9-823c-b3929d03e9e5",
-                apiHost: "https://service.grazianolabs.com",
-                chatflowConfig: {
-                    // topK: 2
+        Chatbot.init({
+            chatflowid: "2f5fb3e5-cb2e-4ef9-823c-b3929d03e9e5",
+            apiHost: "https://service.grazianolabs.com",
+            chatflowConfig: {
+                // topK: 2
+            },
+            theme: {
+                button: {
+                    backgroundColor: "#3B81F6",
+                    right: 20,
+                    bottom: 20,
+                    size: "medium",
+                    iconColor: "white",
+                    customIconSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+                    title: "Chat with Pelé"
                 },
-                theme: {
-                    chatWindow: {
-                        welcomeMessage: "Hello! I'm an AI impersonating Pelé. How can I assist you today?",
-                        backgroundColor: "#ffffff",
-                        height: 600,
-                        width: 400,
-                        fontSize: 16,
-                        poweredByTextColor: "#303235",
-                        botMessage: {
-                            backgroundColor: "#f7f8ff",
-                            textColor: "#303235",
-                            showAvatar: true,
-                            avatarSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Pel%C3%A9_%281966%29.jpg/220px-Pel%C3%A9_%281966%29.jpg",
-                        },
-                        userMessage: {
-                            backgroundColor: "#3B81F6",
-                            textColor: "#ffffff",
-                            showAvatar: true,
-                            avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
-                        },
-                        textInput: {
-                            placeholder: "Chat with Pelé's AI...",
-                            backgroundColor: '#ffffff',
-                            textColor: '#303235',
-                            sendButtonColor: '#3B81F6',
-                        }
+                chatWindow: {
+                    welcomeMessage: "Hello! I'm an AI impersonating Pelé. How can I assist you today?",
+                    backgroundColor: "#ffffff",
+                    height: 600,
+                    width: 400,
+                    fontSize: 16,
+                    poweredByTextColor: "#303235",
+                    botMessage: {
+                        backgroundColor: "#f7f8ff",
+                        textColor: "#303235",
+                        showAvatar: true,
+                        avatarSrc: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Pel%C3%A9_%281966%29.jpg/220px-Pel%C3%A9_%281966%29.jpg",
+                    },
+                    userMessage: {
+                        backgroundColor: "#3B81F6",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: "Chat with Pelé's AI...",
+                        backgroundColor: '#ffffff',
+                        textColor: '#303235',
+                        sendButtonColor: '#3B81F6',
                     }
                 }
-            }, chatWindow)
-        }
+            }
+        })
     </script>
 </body>
 </html>
