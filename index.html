@@ -44,36 +44,12 @@
             margin-bottom: 20px;
             font-size: 1.1em;
         }
-        .chat-icon {
+        #chatWindow {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 60px;
-            height: 60px;
-            background-color: #1cb5e0;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .chat-icon:hover {
-            transform: scale(1.1);
-        }
-        .chat-icon svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
-        }
-        #chatWindow {
-            display: none;
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
+            width: 400px;
+            height: 600px;
             background-color: white;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
@@ -93,33 +69,15 @@
         <p>Pelé, soccer's world ambassador and one of the greatest players in any sport, died on December 29th in São Paulo, Brazil.</p>
     </div>
 
-    <div class="chat-icon" id="chatIcon">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-            <path d="M0 0h24v24H0z" fill="none"/>
-        </svg>
-    </div>
-
     <div id="chatWindow"></div>
 
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
         
-        const chatIcon = document.getElementById('chatIcon');
         const chatWindow = document.getElementById('chatWindow');
-        let chatbotInitialized = false;
 
-        chatIcon.addEventListener('click', () => {
-            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
-                chatWindow.style.display = 'block';
-                if (!chatbotInitialized) {
-                    initializeChatbot();
-                    chatbotInitialized = true;
-                }
-            } else {
-                chatWindow.style.display = 'none';
-            }
-        });
+        // Initialize chatbot immediately when the page loads
+        window.addEventListener('load', initializeChatbot);
 
         function initializeChatbot() {
             Chatbot.init({
@@ -132,8 +90,8 @@
                     chatWindow: {
                         welcomeMessage: "Hello! I'm an AI impersonating Pelé. How can I assist you today?",
                         backgroundColor: "#ffffff",
-                        height: 500,
-                        width: 350,
+                        height: 600,
+                        width: 400,
                         fontSize: 16,
                         poweredByTextColor: "#303235",
                         botMessage: {
@@ -154,6 +112,9 @@
                             textColor: '#303235',
                             sendButtonColor: '#3B81F6',
                         }
+                    },
+                    button: {
+                        size: 0, // Set size to 0 to hide the button
                     }
                 }
             }, chatWindow)
