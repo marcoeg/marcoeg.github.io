@@ -87,7 +87,7 @@
                 accurate answers about any questions you want to ask to a referee.
             </p>
 
-            <img src="https://graziano-ai.nyc3.cdn.digitaloceanspaces.com/rules.png" alt="Rules of the Game" />
+            <img src="https://graziano-ai.nyc3.digitaloceanspaces.com/rules.png"  alt="Rules of the Game" />
 
             <div style="background-color: #2290c4; border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center;">
                 <p style="font-size: 1.4em;  color: #d6dfe9;">Start chatting now in your language</p>
@@ -100,34 +100,31 @@
                     <span style="font-size: 3em;">🇪🇸</span>
                     <span style="font-size: 3em;">🇯🇵</span>
                 </div>
-            </div>            <div class="features">
-                <div class="feature">
-                    <h3>24/7 Availability</h3>
-                    <p>Get answers anytime, anywhere</p>
-                </div>
-                <div class="feature">
-                    <h3>Instant Responses</h3>
-                    <p>No more waiting for information</p>
-                </div>
-                <div class="feature">
-                    <h3>Accurate Information</h3>
-                    <p>Powered by the latest IFAB Rules of the Game</p>
-                </div>
-            </div>
+            </div>            
         </div>
     </div>
 
     <script type="module">
         import Chatbot from "https://cdn.jsdelivr.net/gh/marcoeg/FlowiseChatEmbed@latest/dist/web.js"
         
-        // Create a data URL for the FIFA-style SVG logo with smaller text
-        const fifaLogoSvg = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50">
-            <rect width="100" height="50" fill="#0a3d62"/>
-            <text x="50" y="30" font-family="Arial, sans-serif" font-size="18" fill="white" text-anchor="middle" dominant-baseline="middle">FIFA</text>
-        </svg>
+        // Create a data URL for the SVG logo
+        const whistleSvg = `
+<svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 280 280" xml:space="preserve">
+<path color-rendering="auto" image-rendering="auto" shape-rendering="auto" color-interpolation="sRGB" d="M5,65
+	c-2.761,0-5,2.239-5,5v30c0,2.195,1.431,4.133,3.529,4.779l126.564,38.943C132.04,183.362,164.886,215,205,215
+	c13.7,0,26.544-3.707,37.607-10.146c4.007,7.062,12.035,11.136,20.272,9.938c9.32-1.356,16.474-9.106,17.08-18.504
+	c0.5-7.757-3.573-14.963-10.108-18.676C276.292,166.547,280,153.702,280,140c0-41.362-33.638-75-75-75h-70c-2.761,0-5,2.239-5,5v5
+	h-30v-5c0-2.761-2.239-5-5-5H5L5,65z M10,75h80v5c0,2.761,2.239,5,5,5h40c2.761,0,5-2.239,5-5v-5h27.652
+	c-20.658,11.914-35.129,33.375-37.34,58.326L10,96.307L10,75L10,75z M205,75c35.958,0,65,29.042,65,65c0,35.958-29.042,65-65,65
+	c-35.958,0-65-29.042-65-65C140,104.042,169.042,75,205,75L205,75z M205,85c-2.761-0.039-5.032,2.168-5.071,4.929
+	c-0.039,2.761,2.168,5.032,4.929,5.071c0.047,0.001,0.094,0.001,0.141,0c24.912,0,45,20.088,45,45
+	c-0.039,2.761,2.168,5.032,4.929,5.071c2.761,0.039,5.032-2.168,5.071-4.929c0.001-0.047,0.001-0.094,0-0.141
+	C260,109.684,235.317,85,205,85L205,85z M264.229,185.94c3.701,1.713,6.02,5.512,5.75,9.703c-0.306,4.743-3.836,8.57-8.539,9.254
+	c-4.427,0.644-8.647-1.677-10.5-5.67C255.904,195.368,260.37,190.904,264.229,185.94z"/>
+</svg>
         `;
-        const fifaLogoDataUrl = `data:image/svg+xml;base64,${btoa(fifaLogoSvg)}`;
+        const whistleDataUrl = `data:image/svg+xml;base64,${btoa(whistleSvg)}`;
 
         Chatbot.init({
             chatflowid: "3d944031-ec37-40d5-997c-453e1ebc23ea",
@@ -160,7 +157,7 @@
                 chatWindow: {
                     showTitle: true,
                     title: 'FIFA TMS Assistant',
-                    titleAvatarSrc: fifaLogoDataUrl,
+                    titleAvatarSrc: whistleDataUrl,
                     showAgentMessages: true,
                     welcomeMessage: 'Welcome to the AI referee! How can I help you today?',
                     errorMessage: 'Oops! Something went wrong. Please try again.',
@@ -172,7 +169,7 @@
                         backgroundColor: "#f0f8ff",
                         textColor: "#303235",
                         showAvatar: true,
-                        avatarSrc: fifaLogoDataUrl,
+                        avatarSrc: whistleDataUrl,
                     },
                     userMessage: {
                         backgroundColor: "#4CAF50",
