@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot PNRR</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        h1 {
+            color: #1a5f7a;
+            text-align: center;
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+        }
+        p {
+            text-align: justify;
+        }
+        #chatbot-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chatbot sul Piano Nazionale di Ripresa e Resilienza (PNRR)</h1>
+    
+    <img src="https://graziano-ai.nyc3.cdn.digitaloceanspaces.com/PNRR_900x506_nuova-res.jpg" alt="Piano Nazionale di Ripresa e Resilienza" />
+    
+    <p>Benvenuti al nostro Chatbot dedicato al Piano Nazionale di Ripresa e Resilienza (PNRR). Questo strumento innovativo è progettato per fornire informazioni rapide, precise e aggiornate su tutti gli aspetti del PNRR. Che tu sia un cittadino curioso, un professionista del settore o un funzionario pubblico, il nostro chatbot è qui per rispondere a tutte le tue domande. Dalle misure specifiche ai fondi allocati, dalle tempistiche ai progetti chiave, il nostro assistente virtuale è pronto a guidarti attraverso la complessità del piano. Inizia ora a fare le tue domande e scopri come il PNRR sta plasmando il futuro dell'Italia!</p>
+    
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/gh/marcoeg/FlowiseChatEmbed@latest/dist/web.js"
+        
+        // Create a data URL for the SVG logo
+        const whistleSvg = `
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" width="100" height="50">
+  <rect width="100" height="50" fill="#f0f0f0"/>
+  <g transform="translate(50, 25) scale(0.22)">
+    <!-- Stella -->
+    <path d="M0,-80 L23.5,-24.7 L76.3,-24.7 L32.7,9.4 L50,63.9 L0,35.1 L-50,63.9 L-32.7,9.4 L-76.3,-24.7 L-23.5,-24.7 Z" fill="#white" stroke="#000" stroke-width="5"/>
+    <!-- Ruota dentata -->
+    <circle cx="0" cy="0" r="60" fill="none" stroke="#000" stroke-width="10"/>
+    <g id="tooth">
+      <rect x="-5" y="-70" width="10" height="20" fill="#000"/>
+    </g>
+    <use href="#tooth" transform="rotate(22.5)"/>
+    <use href="#tooth" transform="rotate(45)"/>
+    <use href="#tooth" transform="rotate(67.5)"/>
+    <use href="#tooth" transform="rotate(90)"/>
+    <use href="#tooth" transform="rotate(112.5)"/>
+    <use href="#tooth" transform="rotate(135)"/>
+    <use href="#tooth" transform="rotate(157.5)"/>
+    <use href="#tooth" transform="rotate(180)"/>
+    <!-- Rami di ulivo e quercia stilizzati -->
+    <path d="M-40,-40 Q-60,0 -40,40" fill="none" stroke="#000" stroke-width="5"/>
+    <path d="M40,-40 Q60,0 40,40" fill="none" stroke="#000" stroke-width="5"/>
+  </g>
+</svg>
+        `;
+        const whistleDataUrl = `data:image/svg+xml;base64,${btoa(whistleSvg)}`;
+
+        Chatbot.init({
+            chatflowid: "41ea63d4-cf79-445a-bb32-60c822cfe2c9",
+            apiHost: "https://service.grazianolabs.com",
+            chatflowConfig: {
+                // topK: 2
+            },
+            theme: {
+                button: {
+                    backgroundColor: "#4CAF50",
+                    right: 20,
+                    bottom: 20,
+                    size: 48,
+                    dragAndDrop: true,
+                    iconColor: "white",
+                    customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+                    autoWindowOpen: {
+                        autoOpen: true,
+                        openDelay: 2,
+                        autoOpenOnMobile: false,
+                    },
+                },
+                tooltip: {
+                    showTooltip: true,
+                    tooltipMessage: 'Chiedimi pure sul PNNR!',
+                    tooltipBackgroundColor: '#4CAF50',
+                    tooltipTextColor: 'white',
+                    tooltipFontSize: 16,
+                },
+                chatWindow: {
+                    showTitle: true,
+                    title: 'PNNR Chatbot',
+                    titleAvatarSrc: whistleDataUrl,
+                    showAgentMessages: true,
+                    welcomeMessage: 'Benvenuto al Chatbot sul PNNR! A che domanda posso rispondere?',
+                    errorMessage: 'Oops! Something went wrong. Please try again.',
+                    backgroundColor: "#ffffff",
+                    height: 800,
+                    width: 600,
+                    fontSize: 16,
+                    botMessage: {
+                        backgroundColor: "#f0f8ff",
+                        textColor: "#303235",
+                        showAvatar: true,
+                        avatarSrc: whistleDataUrl,
+                    },
+                    userMessage: {
+                        backgroundColor: "#4CAF50",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: 'Digita la tua domanda...',
+                        backgroundColor: '#ffffff',
+                        textColor: '#303235',
+                        sendButtonColor: '#4CAF50',
+                        maxChars: 200,
+                        maxCharsWarningMessage: 'Your message is too long. Please limit it to 200 characters.',
+                        autoFocus: true,
+                        sendMessageSound: true,
+                        receiveMessageSound: true,
+                    },
+                    feedback: {
+                        color: '#303235',
+                    },
+                    footer: {
+                        textColor: '#303235',
+                        text: 'Powered by',
+                        company: 'Graziano Labs',
+                        companyLink: 'https://grazianolabs.com',
+                    }
+                }
+            }
+        });
+
+
+
+    </script>
+</body>
+</html>
