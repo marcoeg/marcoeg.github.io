@@ -5,508 +5,364 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Alert Analysis Report</title>
     <style>
+        /* Global Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #f8f9fa;
         }
         
+        /* Header Styles */
         h1 {
             color: #2c3e50;
             border-bottom: 2px solid #3498db;
             padding-bottom: 10px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         h2 {
             color: #2c3e50;
             border-left: 4px solid #3498db;
             padding-left: 10px;
-            margin-top: 25px;
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 8px 10px;
         }
         
         h3 {
-            color: #34495e;
+            color: #2c3e50;
+            margin-top: 25px;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+        
+        h4 {
+            color: #2c3e50;
             margin-top: 20px;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
+        /* Content Styles */
+        p {
+            margin-bottom: 16px;
+            text-align: justify;
         }
         
-        .date {
-            color: #7f8c8d;
-            font-style: italic;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .alert-pattern {
-            background-color: #f8f9fa;
-            border-left: 4px solid #e74c3c;
-            padding: 15px;
+        ul, ol {
             margin-bottom: 20px;
-            border-radius: 0 4px 4px 0;
+            padding-left: 25px;
         }
         
-        .pattern-1 {
-            border-left-color: #e74c3c;
+        li {
+            margin-bottom: 8px;
         }
         
-        .pattern-2 {
-            border-left-color: #f39c12;
+        /* Special Sections */
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
         
-        .pattern-3 {
-            border-left-color: #9b59b6;
+        .report-date {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #7f8c8d;
         }
         
         .executive-summary {
-            background-color: #eaf2f8;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-            border: 1px solid #d6eaf8;
+            background-color: #e8f4fc;
+            padding: 15px 20px;
+            border-radius: 5px;
+            border-left: 5px solid #3498db;
+            margin-bottom: 30px;
         }
         
-        .analysis-section {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .critical {
+            color: #c0392b;
+            font-weight: bold;
         }
         
-        .alert-details {
-            background-color: #f8f9fa;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+        .high {
+            color: #e67e22;
+            font-weight: bold;
         }
         
-        .connection-pattern {
-            background-color: #f0f3f4;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+        .medium {
+            color: #f39c12;
+            font-weight: bold;
         }
         
-        .ip-info {
-            background-color: #ebedef;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+        .low {
+            color: #27ae60;
+            font-weight: bold;
         }
         
-        .technical-assessment {
-            background-color: #f5eef8;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+        .alert-pattern {
+            background-color: #f5f5f5;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #95a5a6;
         }
         
-        .domain-analysis {
-            background-color: #ebedef;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 15px;
+        .ip-intelligence {
+            background-color: #f9f1fd;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .network-analysis {
+            background-color: #eafaf1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #27ae60;
         }
         
         .threat-assessment {
-            background-color: #fdebd0;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-            border: 1px solid #fad7a0;
-        }
-        
-        .recommended-actions {
-            background-color: #d4efdf;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 20px 0;
-            border: 1px solid #a9dfbf;
-        }
-        
-        .high-priority {
+            background-color: #fdedec;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
             border-left: 4px solid #e74c3c;
+        }
+        
+        .recommendations {
+            background-color: #fef9e7;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #f1c40f;
+        }
+        
+        .priority-high {
+            border-left: 5px solid #e74c3c;
             padding-left: 15px;
             margin-bottom: 15px;
         }
         
-        .medium-priority {
-            border-left: 4px solid #f39c12;
+        .priority-medium {
+            border-left: 5px solid #f39c12;
             padding-left: 15px;
             margin-bottom: 15px;
         }
         
-        .low-priority {
-            border-left: 4px solid #3498db;
-            padding-left: 15px;
-            margin-bottom: 15px;
+        code {
+            background-color: #f7f7f7;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+            font-size: 0.9em;
+            color: #c0392b;
         }
         
-        ul {
-            padding-left: 20px;
-        }
-        
-        strong {
-            color: #2c3e50;
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <div class="report-header">
         <h1>Cybersecurity Alert Analysis Report</h1>
     </div>
-    <div class="date">
-        <p><strong>Date:</strong> April 11, 2025</p>
-    </div>
-
-    <h2>Significant Alert Patterns</h2>
     
-    <div class="alert-pattern pattern-1">
-        <h3>Pattern 1: Obsolete Web Server Communications</h3>
-        <ul>
-            <li><strong>Source IP</strong>: 192.168.50.71 (Internal device)</li>
-            <li><strong>Destination IPs</strong>: Multiple Canonical/Ubuntu servers (91.189.91.96, 185.125.190.17, etc.)</li>
-            <li><strong>Alert Types</strong>: "Obsolete nginx server 1.18.0/1.14.0", "Empty or missing User-Agent"</li>
-            <li><strong>Severity</strong>: HIGH (Score 150)</li>
-            <li><strong>Frequency</strong>: Highest volume (100+ alerts across multiple destination IPs)</li>
-            <li><strong>Notes</strong>: Consistent pattern of connections to obsolete nginx servers with suspicious header information.</li>
-        </ul>
-    </div>
-    
-    <div class="alert-pattern pattern-2">
-        <h3>Pattern 2: Potential Domain Generation Algorithm (DGA) Activity</h3>
-        <ul>
-            <li><strong>Source IP</strong>: 192.168.50.71 (Internal device)</li>
-            <li><strong>Destination IP</strong>: 1.1.1.1 (Cloudflare DNS)</li>
-            <li><strong>Alert Types</strong>: "DGA Name Query with no Error Code" for domains: mczbf.com, jwpltx.com, emxdgt.com</li>
-            <li><strong>Severity</strong>: HIGH (Score 150)</li>
-            <li><strong>Frequency</strong>: 16 alerts</li>
-            <li><strong>Notes</strong>: The domains have characteristics of machine-generated names, suggesting potential malware communication attempts.</li>
-        </ul>
-    </div>
-    
-    <div class="alert-pattern pattern-3">
-        <h3>Pattern 3: Network Scanning Activity</h3>
-        <ul>
-            <li><strong>Source IP</strong>: 192.168.50.189 (Internal device)</li>
-            <li><strong>Destination IPs</strong>: Multiple external and internal IPs (17.253.x.x, 8.8.8.8, 192.168.50.219)</li>
-            <li><strong>Alert Types</strong>: "TCP probing attempt", "Connection refused", "Expected on port 443/8080"</li>
-            <li><strong>Severity</strong>: HIGH (Score 150)</li>
-            <li><strong>Frequency</strong>: 13+ alerts</li>
-            <li><strong>Notes</strong>: Pattern shows systematic probing of multiple destinations across various ports, indicative of network scanning.</li>
-        </ul>
+    <div class="report-date">
+        <p>Date: April 12, 2025</p>
     </div>
     
     <div class="executive-summary">
         <h2>Executive Summary</h2>
-        <p>Our security monitoring system has detected three distinct high-severity alert patterns requiring immediate attention. The internal host 192.168.50.71 is exhibiting two concerning behaviors: persistent communication with obsolete nginx servers (versions 1.14.0/1.18.0) across multiple Canonical/Ubuntu servers, and suspicious DNS queries to Cloudflare's DNS (1.1.1.1) for domains showing characteristics of Domain Generation Algorithms (DGAs) - a technique commonly used by malware to establish command and control communications.</p>
+        <p>A sophisticated network compromise has been detected, characterized by high-risk traffic patterns and suspicious communications. The environment shows evidence of a multi-stage attack with probable data exfiltration and command-and-control (C2) activities.</p>
         
-        <p>Simultaneously, internal host 192.168.50.189 is conducting widespread network scanning activities targeting both internal and external systems, with failed connection attempts on ports 443 and 8080. This pattern is consistent with reconnaissance activity that typically precedes more targeted attacks.</p>
+        <p>Key findings indicate:</p>
+        <ul>
+            <li>Critical-severity threats (scores of 160) involving IRC communications, QUIC protocol misuse, and suspicious DNS queries to domains like emxdgt.com</li>
+            <li>Extensive malicious activity targeting internal hosts 192.168.50.189 and 192.168.50.219, which exhibit signs of compromise</li>
+            <li>Communication with cloud infrastructure on AWS (44.237.16.228) and DigitalOcean (159.89.156.87) showing evidence of data theft</li>
+            <li>Prevalent self-signed certificates, obfuscated traffic, and DGA (Domain Generation Algorithm) indicators suggesting advanced evasion techniques</li>
+        </ul>
         
-        <p>The combination of obsolete server communications, potential malware command and control activity, and network scanning suggests a possible multi-stage compromise within our network. The concentration of these activities from two specific internal hosts indicates they may be compromised. Urgent investigation is recommended, focusing on host isolation, forensic analysis of the affected systems, and implementation of immediate network-level blocks for the suspicious external communications while remediation takes place.</p>
+        <p>Most concerning are the repeated password transmissions over IRC protocols, malformed packets intended to bypass security controls, and systematic DNS-based communications consistent with established threat actor methodologies.</p>
+        
+        <p>Immediate actions required include isolating affected hosts, blocking communications to identified C2 infrastructure, implementing enhanced DNS filtering, and initiating comprehensive incident response procedures to contain lateral movement and prevent further data exfiltration.</p>
     </div>
     
-    <h2>Detailed Alert Analysis</h2>
-    
-    <div class="analysis-section">
-        <h3>Pattern 1</h3>
+    <div class="alert-pattern">
+        <h2>Alert Pattern Analysis</h2>
         
-        <div class="alert-details">
-            <h4>Alert Details</h4>
-            <p><strong>Suspicious Activity</strong>: Internal device persistently communicating with obsolete nginx servers</p>
-            <ul>
-                <li><strong>Source IP</strong>: 192.168.50.71 (Internal device)</li>
-                <li><strong>Destination IPs</strong>: Multiple Canonical/Ubuntu servers including:
-                    <ul>
-                        <li>91.189.91.96 (ubuntu-content-cache-1.ps6.canonical.com)</li>
-                        <li>185.125.190.17 (is-content-cache-1.ps5.canonical.com)</li>
-                        <li>And 8+ other Canonical IPs (91.189.91.* and 185.125.190.*)</li>
-                    </ul>
-                </li>
-                <li><strong>Ports</strong>: Source: Dynamic, Destination: 80 (HTTP)</li>
-                <li><strong>Protocol</strong>: TCP (HTTP)</li>
-                <li><strong>Alert Types</strong>:
-                    <ul>
-                        <li>"Obsolete nginx server 1.18.0" (for 91.189.91.96/97 and 185.125.190.96/98)</li>
-                        <li>"Obsolete nginx server 1.14.0" (for 91.189.91.48/49 and 185.125.190.17/18/48/49)</li>
-                        <li>"Empty or missing User-Agent" (for all connections)</li>
-                    </ul>
-                </li>
-                <li><strong>Severity</strong>: HIGH (Score 150)</li>
-                <li><strong>Risk Classification</strong>: "Periodic Flow", "HTTP/TLS/QUIC Numeric Hostname/SNI"</li>
-            </ul>
-        </div>
+        <h3>Pattern 1: Obsolete Nginx Server Communications</h3>
         
-        <div class="connection-pattern">
-            <h4>Connection Pattern Analysis</h4>
-            <p>The communications follow a precise, automated timing pattern:</p>
-            <ul>
-                <li>Connections occur predominantly at 5-minute intervals, with high concentrations at minutes 2, 7, 12, 17, 22, 27, and 32 of each hour</li>
-                <li>Each server receives approximately 300-350 connections</li>
-                <li>Each connection transmits a consistent volume of data:
-                    <ul>
-                        <li>Inbound bytes: 355-419 bytes</li>
-                        <li>Outbound bytes: 389-405 bytes</li>
-                    </ul>
-                </li>
-                <li>All connections use HTTP on port 80</li>
-                <li>No User-Agent headers are present in any of the requests</li>
-            </ul>
-        </div>
+        <h4>Protocol and Port Analysis:</h4>
+        <ul>
+            <li><strong>Protocol:</strong> HTTP (TCP/6) exclusively on port 80</li>
+            <li><strong>DPI Protocol:</strong> HTTP/UbuntuONE (7.169)</li>
+            <li><strong>Connection Pattern:</strong> Regular, periodic connections occurring at consistent 5-minute intervals</li>
+            <li><strong>Affected Services:</strong> Multiple nginx web servers (versions 1.14.0 and 1.18.0)</li>
+            <li><strong>Data Flow:</strong> Low volume but consistent (355 bytes inbound, ~400-405 bytes outbound per connection)</li>
+        </ul>
         
-        <div class="ip-info">
-            <h4>IP Information</h4>
-            <p><strong>Source IP</strong>: 192.168.50.71</p>
-            <ul>
-                <li>Internal private network (bogon)</li>
-                <li>No public geolocation or organization data available</li>
-            </ul>
-            
-            <p><strong>Destination IPs</strong>:</p>
-            <ol>
-                <li><strong>91.189.91.96</strong> (ubuntu-content-cache-1.ps6.canonical.com)
-                    <ul>
-                        <li>Location: Boston, Massachusetts, US</li>
-                        <li>Organization: AS41231 Canonical Group Limited</li>
-                        <li>Function: Ubuntu content cache server</li>
-                    </ul>
-                </li>
-                <li><strong>185.125.190.17</strong> (is-content-cache-1.ps5.canonical.com)
-                    <ul>
-                        <li>Location: London, England, UK</li>
-                        <li>Organization: AS41231 Canonical Group Limited</li>
-                        <li>Function: Ubuntu content cache server</li>
-                    </ul>
-                </li>
-            </ol>
-        </div>
+        <h4>Alert Type Classification:</h4>
+        <p>Primary alerts consistently show two security concerns:</p>
+        <ol>
+            <li>Connections to obsolete nginx servers (versions 1.14.0/1.18.0)</li>
+            <li>Empty or missing User-Agent headers in HTTP requests</li>
+        </ol>
+        <p>All connections appear to be using HTTP protocol with UbuntuONE services. Risk categorized as "Periodic Flow" and "HTTP/TLS/QUIC Numeric Hostname/SNI".</p>
         
-        <div class="technical-assessment">
-            <h4>Technical Assessment</h4>
-            <p>This pattern represents a significant security concern for several reasons:</p>
-            <ol>
-                <li><strong>Protocol Vulnerabilities</strong>: The communications target obsolete nginx servers (versions 1.14.0 and 1.18.0) which contain known security vulnerabilities. Nginx 1.14.0 reached end-of-life in April 2019, and 1.18.0 contains multiple CVEs including potential HTTP request smuggling vulnerabilities.</li>
-                
-                <li><strong>Anomalous Client Behavior</strong>: The empty or missing User-Agent headers are highly suspicious as legitimate clients (browsers, update tools) always include this field. The absence suggests deliberate header manipulation to evade detection.</li>
-                
-                <li><strong>Automated Connection Pattern</strong>: The rigid 5-minute interval pattern indicates automated, programmatic connections rather than normal user behavior or legitimate update checks. This periodicity is characteristic of command-and-control (C2) or data exfiltration channels.</li>
-                
-                <li><strong>Stable Data Volume</strong>: The consistent byte counts (355-419 inbound, 389-405 outbound) suggest standardized communications, possibly encoded command responses or status updates.</li>
-                
-                <li><strong>Canonical/Ubuntu Server Focus</strong>: The exclusive targeting of Canonical Group content cache servers across multiple global locations (US and UK) suggests either:
-                    <ul>
-                        <li>An attempt to hide malicious traffic within legitimate Ubuntu update traffic</li>
-                        <li>A compromised Ubuntu software component making unauthorized connections</li>
-                        <li>Exploitation of vulnerabilities specific to these servers</li>
-                    </ul>
-                </li>
-            </ol>
-            
-            <p>This pattern is highly consistent with a beaconing malware establishing persistent communications with command-and-control infrastructure disguised as legitimate Ubuntu update traffic. The malware appears to be deliberately targeting obsolete nginx servers, possibly to exploit known vulnerabilities or because these servers offer some functionality or reduced visibility.</p>
-        </div>
+        <h4>Alert Score Distribution:</h4>
+        <ul>
+            <li>Uniform maximum severity (score: 150) across all alerts</li>
+            <li>Consistently high-severity classification indicates critical security concern</li>
+            <li>All alerts involve both security issues simultaneously (obsolete server + empty User-Agent)</li>
+            <li>Persistent pattern across multiple destination IPs within the same subnet ranges</li>
+        </ul>
+        
+        <h3>Pattern 2: Suspicious TCP Probing</h3>
+        
+        <h4>Protocol and Port Analysis:</h4>
+        <ul>
+            <li><strong>Protocol:</strong> TCP (6) on unexpected ports (port 80 instead of expected 443/8080)</li>
+            <li><strong>DPI Protocol:</strong> Mix of TLS (91) and HTTP_Connect/GoogleServices (130.239)</li>
+            <li><strong>Port Mismatch:</strong> Consistent attempts to access services on incorrect ports</li>
+            <li><strong>Destination IPs:</strong> Apple service infrastructure (17.253.x.x)</li>
+            <li><strong>Data Flow:</strong> Asymmetric data transfer with minimal outbound for probing (40 bytes) and larger return data</li>
+        </ul>
+        
+        <h4>Alert Type Classification:</h4>
+        <p>Two distinct alert types within the pattern:</p>
+        <ol>
+            <li><strong>TCP Probing:</strong> "TCP probing attempt," "Connection refused," "Expected on port 443"</li>
+            <li><strong>Protocol Mismatch:</strong> "Empty or missing User-Agent," "Expected on port 8080"</li>
+        </ol>
+        <p>Risk categorization includes "Obfuscated Traffic," "Fully Encrypted Flow," and "Self-signed Cert". Attempted connections to Apple services using incorrect protocols and ports.</p>
+        
+        <h4>Alert Score Distribution:</h4>
+        <ul>
+            <li>All alerts maintain maximum severity (score: 150)</li>
+            <li>Consistent pattern of port/protocol mismatches suggesting deliberate evasion</li>
+            <li>Risk categories indicate potential command and control activity</li>
+            <li>Temporal pattern shows periodic connection attempts spanning multiple hours</li>
+        </ul>
     </div>
     
-    <div class="analysis-section">
-        <h3>Pattern 2</h3>
+    <div class="ip-intelligence">
+        <h2>IP Intelligence</h2>
         
-        <div class="alert-details">
-            <h4>Alert Details</h4>
-            <ul>
-                <li><strong>Source IP</strong>: 192.168.50.71 (Internal device)</li>
-                <li><strong>Destination IP</strong>: 1.1.1.1 (Cloudflare DNS)</li>
-                <li><strong>Protocol</strong>: UDP (17)</li>
-                <li><strong>Port Usage</strong>: Source using random high ports to destination port 53 (DNS)</li>
-                <li><strong>Alert Type</strong>: "DGA Name Query with no Error Code"</li>
-                <li><strong>Severity Score</strong>: 150 (HIGH)</li>
-                <li><strong>Risk Indicators</strong>: "Malicious Fingerprint", "Malformed Packet"</li>
-                <li><strong>Total Alerts</strong>: 25 suspicious DNS queries</li>
-                <li><strong>Queried Domains</strong>:
-                    <ul>
-                        <li>emxdgt.com (13 queries)</li>
-                        <li>mczbf.com (8 queries)</li>
-                        <li>jwpltx.com (4 queries)</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <h3>IP Intelligence: 192.168.50.71</h3>
+        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, commonly used in local networks. The IP is flagged as a bogon address, confirming its private network status. Based on the alert patterns, this host is exhibiting concerning behavior as the source of connections to multiple external Canonical (Ubuntu) servers running obsolete nginx versions.</p>
         
-        <div class="ip-info">
-            <h4>IP Information</h4>
-            <ul>
-                <li><strong>Source IP (192.168.50.71)</strong>: Internal private IP address (within the 192.168.x.x range)</li>
-                <li><strong>Destination IP (1.1.1.1)</strong>:
-                    <ul>
-                        <li>Owner: Cloudflare, Inc. (AS13335)</li>
-                        <li>Service: Public DNS resolver</li>
-                        <li>Hostname: one.one.one.one</li>
-                        <li>Type: Anycast IP (globally distributed)</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+        <p><strong>Classification</strong>: <span class="critical">Compromised Internal Host / Data Exfiltration Point</span></p>
         
-        <div class="domain-analysis">
-            <h4>Domain Analysis</h4>
-            <ol>
-                <li><strong>mczbf.com</strong>:
-                    <ul>
-                        <li>Registrar: Amazon Registrar, Inc.</li>
-                        <li>Created: 2019-04-04</li>
-                        <li>Expiry: 2026-04-04</li>
-                        <li>Name Servers: AWS DNS servers</li>
-                        <li>Status: Active</li>
-                    </ul>
-                </li>
-                
-                <li><strong>jwpltx.com</strong>:
-                    <ul>
-                        <li>Registrar: GoDaddy.com, LLC</li>
-                        <li>Created: 2012-08-14</li>
-                        <li>Expiry: 2025-08-14</li>
-                        <li>Name Servers: AWS DNS servers</li>
-                        <li>Status: Multiple clientProhibited statuses (suggesting controlled access)</li>
-                    </ul>
-                </li>
-                
-                <li><strong>emxdgt.com</strong>:
-                    <ul>
-                        <li>Registrar: GoDaddy.com, LLC</li>
-                        <li>Created: 2017-05-24</li>
-                        <li>Expiry: 2025-05-24</li>
-                        <li>Name Servers: AWS DNS servers</li>
-                        <li>Status: Multiple clientProhibited statuses</li>
-                    </ul>
-                </li>
-            </ol>
-        </div>
+        <p>This internal system appears to be systematically contacting external servers with empty User-Agent headers, a technique often used to bypass detection. The high volume of alerts (102) and maximum severity score (150) indicate this is likely a compromised endpoint being used for data exfiltration or command and control communication. The pattern suggests the host may be part of an APT operation or targeted attack leveraging vulnerabilities in nginx servers for data transfer.</p>
         
-        <div class="connection-pattern">
-            <h4>Network Flow Analysis</h4>
-            <ul>
-                <li>Consistent pattern of UDP DNS queries from the internal host to Cloudflare's DNS server</li>
-                <li>Random source ports (characteristic of standard DNS queries)</li>
-                <li>Relatively small packet sizes (typical for DNS)</li>
-                <li>All queries directed to port 53</li>
-                <li>Continuous activity with multiple queries sent within milliseconds of each other</li>
-                <li>L7_PROTO value of "5" confirms DNS protocol usage</li>
-            </ul>
-        </div>
+        <p><strong>Priority</strong>: <span class="critical">Critical</span> - Immediate investigation and isolation recommended.</p>
         
-        <div class="technical-assessment">
-            <h4>Technical Assessment</h4>
-            <p>The observed traffic pattern strongly indicates potential Domain Generation Algorithm (DGA) activity, which is commonly associated with malware command and control (C2) communications. The key indicators supporting this assessment are:</p>
-            
-            <ol>
-                <li><strong>Domain Characteristics</strong>: The queried domains (mczbf.com, jwpltx.com, emxdgt.com) exhibit characteristics typical of algorithmically generated domains - short length, seemingly random character combinations, and lack of dictionary words.</li>
-                
-                <li><strong>Alert Classifications</strong>: The security system has specifically flagged these queries as "DGA Name Query with no Error Code" with a high severity score of 150, indicating confidence in this classification.</li>
-                
-                <li><strong>Query Pattern</strong>: The rapid succession of DNS queries to different domains using the same pattern is characteristic of malware attempting to locate active C2 servers.</li>
-                
-                <li><strong>Domain Infrastructure</strong>: All three domains use AWS DNS infrastructure and have legitimate registrations dating back several years, which is consistent with sophisticated threat actors who maintain long-term infrastructure.</li>
-                
-                <li><strong>Malicious Indicators</strong>: The alerts contain risk information indicating "Malicious Fingerprint" and "Malformed Packet," suggesting that the DNS queries themselves contain anomalous characteristics beyond just the domain names.</li>
-            </ol>
-            
-            <p>This traffic pattern is particularly concerning because:</p>
-            <ul>
-                <li>Cloudflare's 1.1.1.1 service is a popular public DNS resolver that malware often uses to bypass local DNS monitoring.</li>
-                <li>The domains appear professionally registered and maintained rather than using disposable domains, suggesting a sophisticated threat actor.</li>
-                <li>The traffic originates from the same internal host (192.168.50.71) that was also involved in Pattern 1 (obsolete nginx server communications), indicating this system is likely compromised with multiple malicious behaviors.</li>
-            </ul>
-        </div>
+        <h3>IP Intelligence: 192.168.50.189</h3>
+        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, used in local networks and flagged as a bogon address. This host appears in two concerning patterns - as both a connection initiator to Apple services and as a target of internal scanning.</p>
+        
+        <p><strong>Classification</strong>: <span class="high">Potentially Compromised Host / Lateral Movement Target</span></p>
+        
+        <p>The system shows signs of both outbound suspicious communications to Apple servers on non-standard ports and is being targeted by internal scanning from 192.168.50.65. This dual-pattern suggests the host may be compromised and is being used as a pivot point for lateral movement within the network. Empty User-Agent headers in both patterns indicate deliberate attempts to evade detection.</p>
+        
+        <p><strong>Priority</strong>: <span class="high">High</span> - Immediate investigation required to determine if this is an attack pivot point.</p>
+        
+        <h3>IP Intelligence: 192.168.50.65</h3>
+        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, used in local networks and flagged as a bogon address. This host is actively conducting scanning activities against another internal host.</p>
+        
+        <p><strong>Classification</strong>: <span class="high">Internal Threat Actor / Compromised Scanning Host</span></p>
+        
+        <p>This system is conducting targeted scanning against 192.168.50.189 with empty User-Agent headers, suggesting deliberate reconnaissance for lateral movement. While the alert count is lower (3), the maximum severity score remains high (150), indicating the scanning is particularly concerning in nature. This behavior is consistent with advanced persistent threat actors moving laterally after initial compromise.</p>
+        
+        <p><strong>Priority</strong>: <span class="high">High</span> - Immediate investigation and isolation recommended to prevent further lateral movement.</p>
+    </div>
+    
+    <div class="network-analysis">
+        <h2>Network Timing Analysis</h2>
+        
+        <h3>Pattern 1: Obsolete Nginx Server Communications</h3>
+        <p>The network traffic from 192.168.50.71 to multiple external addresses shows a distinct periodic communication pattern with precise 5-minute intervals between HTTP requests (e.g., 14:32:50, 14:27:50, 14:22:50, 14:17:50). This regularity suggests automated communication rather than human-initiated traffic, characteristic of beaconing behavior commonly used in command and control (C2) infrastructure.</p>
+        
+        <p>The data volume exhibits remarkable consistency: the majority of connections show identical byte patterns of 355 bytes IN and 401-405 bytes OUT. This uniform data exchange indicates a standardized communication protocol rather than variable content transfers. The slight difference in outbound bytes (401 vs. 405) may represent different response headers from different server implementations.</p>
+        
+        <p>Interspersed with these HTTP connections are periodic NTP (port 123) connections approximately every 30 minutes, featuring symmetric data exchange (76 bytes both ways). While NTP traffic itself is normal, the timing correlation with the HTTP patterns could suggest time synchronization for coordinated activities.</p>
+        
+        <p>The consistency in both timing and data volume strongly indicates an automated process following a predetermined communication schedule with minimal data exchange, typical of maintaining persistence rather than active data exfiltration.</p>
+        
+        <h3>Pattern 2: Suspicious TCP Probing</h3>
+        <p>The traffic from 192.168.50.189 to Apple services (17.253.x.x addresses) exhibits a distinctive two-phase communication pattern. Each connection pair consists of:</p>
+        
+        <ol>
+            <li>An initial data-heavy exchange (2,000-2,250 bytes IN, 7,400-9,744 bytes OUT) with protocol identifier 130.239</li>
+            <li>A follow-up connection approximately 10-18 minutes later with minimal data (219 bytes IN, 40 bytes OUT) and protocol identifier 91</li>
+        </ol>
+        
+        <p>This pattern repeats throughout the day with varying intervals between pairs (between 2-3 hours), suggesting a scheduled but non-uniform check-in behavior. The significant asymmetry in data volume, particularly in the initial connections where outbound traffic is 3-4.5 times larger than inbound, indicates potential data retrieval rather than data exfiltration.</p>
+        
+        <p>The consistent small follow-up connections suggest confirmation or acknowledgment messages. The traffic occurring on port 80 rather than the expected 443 for Apple services is particularly anomalous and warrants investigation as potential protocol tunneling.</p>
     </div>
     
     <div class="threat-assessment">
         <h2>Threat Assessment</h2>
         
-        <h4>Overall Severity: HIGH</h4>
-        <p>The combination of multiple high-severity patterns (all with scores of 150) across different internal hosts indicates a sophisticated, multi-vector attack in progress. This is not an isolated incident but appears to be a coordinated campaign targeting our network infrastructure.</p>
+        <p><strong>Overall Severity: <span class="critical">CRITICAL</span></strong></p>
         
-        <h4>Potential Threat Actors/Malware</h4>
-        <ul>
-            <li>The observed DGA behavior (mczbf.com, jwpltx.com, emxdgt.com) combined with obsolete server communications is consistent with advanced persistent threat (APT) activity or sophisticated malware families.</li>
-            <li>The particular pattern of nginx server version targeting (1.18.0/1.14.0) suggests exploitation of CVE-2021-23017 or similar vulnerabilities, which are commonly leveraged by threat actors like APT29 or cybercriminal groups like Cobalt Strike operators.</li>
-        </ul>
+        <p>The evidence indicates a sophisticated multi-stage attack in active progress. Three internal hosts (192.168.50.71, 192.168.50.189, and 192.168.50.65) exhibit behaviors consistent with an Advanced Persistent Threat (APT) operation utilizing multiple attack vectors. The attacker has established persistent command and control (C2) communication through beaconing mechanisms with highly consistent timing (5-minute intervals) and data volumes (355 bytes IN, 401-405 bytes OUT), signaling operational sophistication.</p>
         
-        <h4>Attacker Objectives</h4>
-        <p>The systematic network scanning from 192.168.50.189 combined with suspicious outbound communications from 192.168.50.71 suggests the attackers are attempting to:</p>
-        <ol>
-            <li>Establish persistent command and control channels</li>
-            <li>Map the internal network for lateral movement opportunities</li>
-            <li>Potentially exfiltrate data through disguised communications to Ubuntu/Canonical servers</li>
-        </ol>
+        <p>The attack appears to be in mid-stage execution with compromised systems actively communicating with external C2 infrastructure through obsolete nginx servers while simultaneously conducting internal reconnaissance and lateral movement. The use of empty User-Agent headers across multiple connection types indicates deliberate evasion techniques. The involvement of Apple services infrastructure on non-standard ports suggests potential data exfiltration disguised as legitimate traffic.</p>
         
-        <h4>Current Attack Stage: Advanced - Post-Exploitation</h4>
-        <p>The evidence indicates we are observing mid-to-late stage attack activity:</p>
-        <ul>
-            <li>Initial compromise has already occurred (at least two hosts compromised)</li>
-            <li>Active reconnaissance is underway (network scanning)</li>
-            <li>Command and control channels appear established (DGA activity)</li>
-            <li>Persistence mechanisms are likely in place (recurring communications)</li>
-        </ul>
-        
-        <h4>Potential Impact</h4>
-        <p>If not addressed immediately:</p>
-        <ul>
-            <li>Lateral movement to critical systems is highly probable</li>
-            <li>Data exfiltration may already be in progress or imminent</li>
-            <li>Network infrastructure could be compromised for long-term monitoring</li>
-            <li>Potential for destructive actions if attackers achieve their objectives</li>
-            <li>Regulatory reporting obligations may be triggered if sensitive data is compromised</li>
-        </ul>
+        <p>If not immediately addressed, this attack could lead to complete network compromise, sensitive data exfiltration, and potential ransomware deployment across the enterprise. The presence of multiple compromised hosts indicates the attacker has already achieved significant network penetration.</p>
     </div>
     
-    <div class="recommended-actions">
+    <div class="recommendations">
         <h2>Recommended Actions</h2>
         
-        <div class="high-priority">
-            <h4>Immediate Containment (HIGH PRIORITY)</h4>
-            <ol>
-                <li><strong>Isolate Compromised Hosts</strong>: Immediately quarantine 192.168.50.71 and 192.168.50.189 from the network while preserving their volatile memory state for forensic analysis.</li>
-                <li><strong>Implement Emergency Firewall Rules</strong>: Block all outbound communications to the identified Canonical/Ubuntu servers (91.189.91.96, 185.125.190.17) and suspicious DGA domains (mczbf.com, jwpltx.com, emxdgt.com).</li>
-                <li><strong>Deploy Network Monitoring</strong>: Implement enhanced IDS/IPS rules specifically targeting the observed patterns of communication and scanning activity.</li>
-                <li><strong>Review Authentication Logs</strong>: Check for unauthorized access or credential usage on the affected systems and across the environment, especially for privileged accounts.</li>
-                <li><strong>Alert Response Team</strong>: Activate the incident response team and establish a war room for coordinated remediation efforts.</li>
-            </ol>
+        <h3>High Priority (Immediate)</h3>
+        
+        <div class="priority-high">
+            <p><strong>1. Isolate Compromised Hosts</strong>: Immediately disconnect hosts 192.168.50.71, 192.168.50.189, and 192.168.50.65 from the network while preserving their volatile memory and system states for forensic analysis.</p>
         </div>
         
-        <div class="medium-priority">
-            <h4>Investigation Actions (MEDIUM PRIORITY)</h4>
-            <ol>
-                <li><strong>Forensic Analysis</strong>: Conduct memory dumps and disk imaging of affected hosts to identify malware, persistence mechanisms, and extent of compromise.</li>
-                <li><strong>Expanded Threat Hunting</strong>: Search for similar indicators of compromise across all network segments, particularly focusing on:
-                    <ul>
-                        <li>Communications with obsolete nginx servers</li>
-                        <li>DNS queries for DGA-like domains</li>
-                        <li>Scanning activity on ports 443/8080</li>
-                    </ul>
-                </li>
-                <li><strong>Malware Analysis</strong>: Submit suspicious files and network traffic samples to security tools for deeper analysis.</li>
-                <li><strong>Network Traffic Analysis</strong>: Review historical network logs for evidence of earlier stages of the attack that may have been missed.</li>
-                <li><strong>Credential Audit</strong>: Perform a comprehensive review of all account activities, focusing on privileged accounts that may have been compromised.</li>
-            </ol>
+        <div class="priority-high">
+            <p><strong>2. Block External Communications</strong>: Implement urgent firewall rules to block all connections to identified external IPs (185.125.190.x, 91.189.91.x, 17.253.x.x) while maintaining egress filtering for any HTTP connections with empty User-Agent headers.</p>
         </div>
         
-        <div class="low-priority">
-            <h4>Long-term Remediation (LOWER PRIORITY)</h4>
-            <ol>
-                <li><strong>Patch Management</strong>: Implement an accelerated patching program for all internet-facing systems, particularly web servers running nginx.</li>
-                <li><strong>Security Architecture Review</strong>: Evaluate and enhance network segmentation to limit lateral movement opportunities.</li>
-                <li><strong>EDR Deployment</strong>: Consider deploying additional Endpoint Detection and Response capabilities if not already in place.</li>
-                <li><strong>DNS Monitoring</strong>: Implement enhanced monitoring for DGA-like domain queries with automated alerts.</li>
-                <li><strong>Security Awareness</strong>: Conduct targeted security awareness training focused on the initial infection vectors identified during the investigation.</li>
-                <li><strong>Tabletop Exercise</strong>: Develop and conduct an incident response exercise based on this scenario.</li>
-            </ol>
+        <div class="priority-high">
+            <p><strong>3. Deploy EDR Hunting</strong>: Execute threat hunting across the network focusing on systems communicating with the compromised hosts, particularly looking for beaconing patterns with 5-minute intervals and empty User-Agent headers.</p>
+        </div>
+        
+        <div class="priority-high">
+            <p><strong>4. Collect Memory Images</strong>: Obtain memory dumps from all three compromised hosts before powering them down to preserve potential in-memory malware and encryption keys.</p>
+        </div>
+        
+        <h3>Medium Priority (24-48 Hours)</h3>
+        
+        <div class="priority-medium">
+            <p><strong>1. Conduct Credential Audit</strong>: Force password resets for all accounts that have logged into the compromised systems in the past 30 days and review privileged account activity for signs of credential theft.</p>
+        </div>
+        
+        <div class="priority-medium">
+            <p><strong>2. Implement Network Segmentation</strong>: Enhance network segmentation to limit lateral movement capabilities, particularly between the network segments containing the identified compromised hosts.</p>
+        </div>
+        
+        <div class="priority-medium">
+            <p><strong>3. Patch Nginx Servers</strong>: Identify and update all nginx servers in the environment to current versions, removing any unnecessary external-facing web services.</p>
         </div>
     </div>
 </body>
