@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cybersecurity Alert Analysis Report</title>
     <style>
-        /* Global Styles */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -13,356 +12,648 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f8f9fa;
+            background-color: #f9f9f9;
         }
-        
-        /* Header Styles */
         h1 {
             color: #2c3e50;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 3px solid #3498db;
             padding-bottom: 10px;
-            margin-top: 20px;
+            margin-top: 30px;
         }
-        
         h2 {
             color: #2c3e50;
-            border-left: 4px solid #3498db;
-            padding-left: 10px;
-            margin-top: 30px;
-            background-color: #ecf0f1;
-            padding: 8px 10px;
-        }
-        
-        h3 {
-            color: #2c3e50;
-            margin-top: 25px;
-            border-bottom: 1px solid #bdc3c7;
+            border-bottom: 2px solid #ddd;
             padding-bottom: 5px;
+            margin-top: 25px;
         }
-        
-        h4 {
-            color: #2c3e50;
+        h3 {
+            color: #3498db;
             margin-top: 20px;
         }
-        
-        /* Content Styles */
         p {
-            margin-bottom: 16px;
-            text-align: justify;
+            margin-bottom: 15px;
         }
-        
         ul, ol {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-left: 25px;
         }
-        
-        li {
-            margin-bottom: 8px;
-        }
-        
-        /* Special Sections */
-        .report-header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .report-date {
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 30px;
-            color: #7f8c8d;
-        }
-        
-        .executive-summary {
-            background-color: #e8f4fc;
-            padding: 15px 20px;
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
             border-radius: 5px;
-            border-left: 5px solid #3498db;
-            margin-bottom: 30px;
+            overflow-x: auto;
+            border-left: 4px solid #3498db;
+            font-family: 'Courier New', Courier, monospace;
         }
-        
-        .critical {
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .date {
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 25px;
+        }
+        .highlight {
+            background-color: #ffffcc;
+            padding: 2px;
+        }
+        .pattern {
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+        .alert-high {
             color: #c0392b;
             font-weight: bold;
         }
-        
-        .high {
+        .alert-medium {
             color: #e67e22;
             font-weight: bold;
         }
-        
-        .medium {
-            color: #f39c12;
-            font-weight: bold;
-        }
-        
-        .low {
+        .alert-low {
             color: #27ae60;
             font-weight: bold;
         }
-        
-        .alert-pattern {
+        .confidence {
+            font-style: italic;
+            color: #7f8c8d;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:hover {
             background-color: #f5f5f5;
-            padding: 15px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #95a5a6;
         }
-        
-        .ip-intelligence {
-            background-color: #f9f1fd;
-            padding: 15px 20px;
+        .phase {
+            background-color: #eef7ff;
+            padding: 15px;
             border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #9b59b6;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
         }
-        
-        .network-analysis {
-            background-color: #eafaf1;
-            padding: 15px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .threat-assessment {
-            background-color: #fdedec;
-            padding: 15px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .recommendations {
-            background-color: #fef9e7;
-            padding: 15px 20px;
-            border-radius: 5px;
-            margin-bottom: 20px;
-            border-left: 4px solid #f1c40f;
-        }
-        
         .priority-high {
-            border-left: 5px solid #e74c3c;
-            padding-left: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .priority-medium {
-            border-left: 5px solid #f39c12;
-            padding-left: 15px;
-            margin-bottom: 15px;
-        }
-        
-        code {
-            background-color: #f7f7f7;
-            padding: 2px 5px;
-            border-radius: 3px;
-            font-family: Consolas, Monaco, 'Andale Mono', monospace;
-            font-size: 0.9em;
             color: #c0392b;
         }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            h2 {
-                font-size: 1.5em;
-            }
+        .priority-medium {
+            color: #e67e22;
+        }
+        .priority-low {
+            color: #27ae60;
         }
     </style>
 </head>
 <body>
-    <div class="report-header">
+    <div class="section">
         <h1>Cybersecurity Alert Analysis Report</h1>
-    </div>
-    
-    <div class="report-date">
-        <p>Date: April 12, 2025</p>
-    </div>
-    
-    <div class="executive-summary">
+        <p class="date"><strong>Date:</strong> April 12, 2025</p>
+
         <h2>Executive Summary</h2>
-        <p>A sophisticated network compromise has been detected, characterized by high-risk traffic patterns and suspicious communications. The environment shows evidence of a multi-stage attack with probable data exfiltration and command-and-control (C2) activities.</p>
+        <p>The security investigation has identified two distinct patterns of high-severity network activity that warrant attention. The first pattern involves highly regular communications between an internal host (192.168.50.71) and Ubuntu repositories using obsolete nginx servers (versions 1.14.0/1.18.0), occurring at consistent 5-minute intervals with nearly identical data volumes. The second pattern shows irregular communications between host 192.168.50.189 and Apple CDN servers with unusual protocol characteristics, failed connection attempts, and asymmetric data transfers.</p>
         
-        <p>Key findings indicate:</p>
-        <ul>
-            <li>Critical-severity threats (scores of 160) involving IRC communications, QUIC protocol misuse, and suspicious DNS queries to domains like emxdgt.com</li>
-            <li>Extensive malicious activity targeting internal hosts 192.168.50.189 and 192.168.50.219, which exhibit signs of compromise</li>
-            <li>Communication with cloud infrastructure on AWS (44.237.16.228) and DigitalOcean (159.89.156.87) showing evidence of data theft</li>
-            <li>Prevalent self-signed certificates, obfuscated traffic, and DGA (Domain Generation Algorithm) indicators suggesting advanced evasion techniques</li>
-        </ul>
+        <p>The Ubuntu repository communications (Pattern 1) are likely legitimate system updates or maintenance processes, but present security concerns due to the outdated components and consistently missing User-Agent headers. These vulnerabilities could potentially be exploited even if the current activity is benign. We assess with high confidence that this represents automated system maintenance rather than malicious activity, though the security vulnerabilities require remediation.</p>
         
-        <p>Most concerning are the repeated password transmissions over IRC protocols, malformed packets intended to bypass security controls, and systematic DNS-based communications consistent with established threat actor methodologies.</p>
+        <p>The Apple CDN communications (Pattern 2) present more complex characteristics including unusual port usage (TLS on port 80), connection failures, and anomalous protocol identifiers. This could represent either a misconfigured application, mobile device synchronization issues, or potentially concerning data movement. The 5:1 ratio of outbound to inbound data warrants closer investigation.</p>
         
-        <p>Immediate actions required include isolating affected hosts, blocking communications to identified C2 infrastructure, implementing enhanced DNS filtering, and initiating comprehensive incident response procedures to contain lateral movement and prevent further data exfiltration.</p>
+        <p>Major information gaps include process ownership details, application inventory context, and historical baseline data that would help distinguish between normal operations and security incidents.</p>
+        
+        <p>Recommended next steps include: inspecting the Ubuntu update mechanisms, analyzing full packet content of Apple communications, implementing enhanced monitoring for protocol anomalies, and updating the obsolete nginx components regardless of whether malicious intent is confirmed.</p>
     </div>
-    
-    <div class="alert-pattern">
+
+    <div class="section">
+        <h2>Alert Summary</h2>
+        <p>Based on the analysis of high-severity alerts (score ≥ 100) since April 12, 2025, at 07:18:19 UTC, a significant pattern of activity has been observed within the network. All alerts show a maximum severity score of 150, indicating critical security concerns that warrant immediate investigation.</p>
+        
+        <p>The data reveals concentrated activity originating primarily from two internal IP addresses (192.168.50.71 and 192.168.50.189), which account for the majority of high-severity alerts. These internal hosts are communicating with multiple external destinations, generating a total of 150 high-severity alerts across the analyzed connections.</p>
+        
+        <p>The most prevalent alert types observed are:</p>
+        <ol>
+            <li>"Obsolete nginx server" notifications (versions 1.14.0 and 1.18.0)</li>
+            <li>"Empty or missing User-Agent" warnings</li>
+            <li>"TCP probing attempt" and "Connection refused" alerts</li>
+            <li>Port-specific warnings for expected communications on ports 8080, 443, and 80</li>
+        </ol>
+        
+        <p>Most of the connections involve the internal IP 192.168.50.71 communicating with multiple external IPs in the 185.125.190.x and 91.189.91.x ranges. The secondary pattern involves 192.168.50.189 communicating with 17.253.x.x IP addresses and showing evidence of TCP connection activities.</p>
+        
+        <p>There is also internal communication between 192.168.50.55 and 192.168.50.189 generating high-severity alerts related to User-Agent headers on port 80.</p>
+
+        <h2>Top Alert Patterns</h2>
+
+        <div class="pattern">
+            <h3>Pattern 1: Obsolete nginx Communications</h3>
+            <ul>
+                <li><strong>Source IP</strong>: 192.168.50.71</li>
+                <li><strong>Destination IP</strong>: Multiple IPs in 185.125.190.x and 91.189.91.x ranges</li>
+                <li><strong>Alert Count</strong>: 110 (combined across multiple destination IPs)</li>
+                <li><strong>Maximum Alert Score</strong>: 150</li>
+                <li><strong>Primary Alert Types</strong>: "Obsolete nginx server 1.14.0/1.18.0", "Empty or missing User-Agent"</li>
+            </ul>
+            
+            <p>This pattern represents the most significant cluster of alerts, with a single internal host (192.168.50.71) communicating with multiple external destinations. All communications generate high-severity alerts related to obsolete nginx server versions and missing User-Agent headers.</p>
+        </div>
+
+        <div class="pattern">
+            <h3>Pattern 2: TCP Probing Activities</h3>
+            <ul>
+                <li><strong>Source IP</strong>: 192.168.50.189</li>
+                <li><strong>Destination IP</strong>: 17.253.17.211, 17.253.5.208</li>
+                <li><strong>Alert Count</strong>: 17 (combined)</li>
+                <li><strong>Maximum Alert Score</strong>: 150</li>
+                <li><strong>Primary Alert Types</strong>: "TCP probing attempt", "Connection refused", "Expected on port 443/8080", "Empty or missing User-Agent"</li>
+            </ul>
+            
+            <p>This pattern shows activity from 192.168.50.189 to Apple-owned IP addresses (17.253.x.x range) with alerts indicating TCP probing attempts, connection refusals, and missing User-Agent headers across multiple ports.</p>
+        </div>
+
+        <div class="pattern">
+            <h3>Pattern 3: Internal Network Communications</h3>
+            <ul>
+                <li><strong>Source IP</strong>: 192.168.50.55</li>
+                <li><strong>Destination IP</strong>: 192.168.50.189</li>
+                <li><strong>Alert Count</strong>: 8</li>
+                <li><strong>Maximum Alert Score</strong>: 150</li>
+                <li><strong>Primary Alert Types</strong>: "Empty or missing User-Agent", "Expected on port 80"</li>
+            </ul>
+            
+            <p>This pattern represents internal network communications generating high-severity alerts related to HTTP traffic with missing User-Agent headers on port 80, indicating potential internal reconnaissance or unauthorized communication between hosts within the protected network.</p>
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Alert Pattern Analysis</h2>
-        
-        <h3>Pattern 1: Obsolete Nginx Server Communications</h3>
-        
-        <h4>Protocol and Port Analysis:</h4>
-        <ul>
-            <li><strong>Protocol:</strong> HTTP (TCP/6) exclusively on port 80</li>
-            <li><strong>DPI Protocol:</strong> HTTP/UbuntuONE (7.169)</li>
-            <li><strong>Connection Pattern:</strong> Regular, periodic connections occurring at consistent 5-minute intervals</li>
-            <li><strong>Affected Services:</strong> Multiple nginx web servers (versions 1.14.0 and 1.18.0)</li>
-            <li><strong>Data Flow:</strong> Low volume but consistent (355 bytes inbound, ~400-405 bytes outbound per connection)</li>
-        </ul>
-        
-        <h4>Alert Type Classification:</h4>
-        <p>Primary alerts consistently show two security concerns:</p>
-        <ol>
-            <li>Connections to obsolete nginx servers (versions 1.14.0/1.18.0)</li>
-            <li>Empty or missing User-Agent headers in HTTP requests</li>
-        </ol>
-        <p>All connections appear to be using HTTP protocol with UbuntuONE services. Risk categorized as "Periodic Flow" and "HTTP/TLS/QUIC Numeric Hostname/SNI".</p>
-        
-        <h4>Alert Score Distribution:</h4>
-        <ul>
-            <li>Uniform maximum severity (score: 150) across all alerts</li>
-            <li>Consistently high-severity classification indicates critical security concern</li>
-            <li>All alerts involve both security issues simultaneously (obsolete server + empty User-Agent)</li>
-            <li>Persistent pattern across multiple destination IPs within the same subnet ranges</li>
-        </ul>
-        
-        <h3>Pattern 2: Suspicious TCP Probing</h3>
-        
-        <h4>Protocol and Port Analysis:</h4>
-        <ul>
-            <li><strong>Protocol:</strong> TCP (6) on unexpected ports (port 80 instead of expected 443/8080)</li>
-            <li><strong>DPI Protocol:</strong> Mix of TLS (91) and HTTP_Connect/GoogleServices (130.239)</li>
-            <li><strong>Port Mismatch:</strong> Consistent attempts to access services on incorrect ports</li>
-            <li><strong>Destination IPs:</strong> Apple service infrastructure (17.253.x.x)</li>
-            <li><strong>Data Flow:</strong> Asymmetric data transfer with minimal outbound for probing (40 bytes) and larger return data</li>
-        </ul>
-        
-        <h4>Alert Type Classification:</h4>
-        <p>Two distinct alert types within the pattern:</p>
-        <ol>
-            <li><strong>TCP Probing:</strong> "TCP probing attempt," "Connection refused," "Expected on port 443"</li>
-            <li><strong>Protocol Mismatch:</strong> "Empty or missing User-Agent," "Expected on port 8080"</li>
-        </ol>
-        <p>Risk categorization includes "Obfuscated Traffic," "Fully Encrypted Flow," and "Self-signed Cert". Attempted connections to Apple services using incorrect protocols and ports.</p>
-        
-        <h4>Alert Score Distribution:</h4>
-        <ul>
-            <li>All alerts maintain maximum severity (score: 150)</li>
-            <li>Consistent pattern of port/protocol mismatches suggesting deliberate evasion</li>
-            <li>Risk categories indicate potential command and control activity</li>
-            <li>Temporal pattern shows periodic connection attempts spanning multiple hours</li>
-        </ul>
+
+        <div class="pattern">
+            <h3>Pattern 1: Obsolete nginx Server Communications</h3>
+            
+            <h4>Factual Observations</h4>
+            <ul>
+                <li><strong>Source</strong>: Internal host 192.168.50.71</li>
+                <li><strong>Destinations</strong>: Multiple IPs in the 185.125.190.x and 91.189.91.x ranges, all owned by Canonical Group Limited (Ubuntu)</li>
+                <li><strong>Protocol & Port</strong>: Exclusively TCP (protocol type 6) over port 80</li>
+                <li><strong>Alert Types</strong>: 
+                    <ul>
+                        <li>"Obsolete nginx server 1.14.0" and "Obsolete nginx server 1.18.0"</li>
+                        <li>"Empty or missing User-Agent" in every alert</li>
+                    </ul>
+                </li>
+                <li><strong>Traffic Pattern</strong>: Consistent, evenly distributed communications (6-9 connections per hour)
+                    <ul>
+                        <li>Average hourly connection rate: 7.47 connections</li>
+                        <li>Average byte transfer: ~355 bytes inbound, ~403 bytes outbound</li>
+                    </ul>
+                </li>
+                <li><strong>Protocol Info</strong>: HTTP, UbuntuONE</li>
+                <li><strong>Risk Info</strong>: "Periodic Flow" and "HTTP/TLS/QUIC Numeric Hostname/SNI"</li>
+                <li><strong>Severity</strong>: All alerts have maximum severity score of 150</li>
+            </ul>
+            
+            <p>The traffic shows a remarkably consistent pattern with nearly identical byte counts across all communications. Connections occur at regular intervals throughout the day, suggesting automated, scheduled communications. The destination IPs belong to Canonical, the company behind Ubuntu Linux. Source ports appear to be randomly allocated high ports, while destination ports are consistently 80.</p>
+            
+            <h4>Potential Interpretations</h4>
+            <p>This pattern likely represents Ubuntu update checks or repository communications using outdated software. The obsolete nginx server versions (1.14.0 and 1.18.0) are notable security concerns as they may contain known vulnerabilities.</p>
+            
+            <p>The consistent "Empty or missing User-Agent" in communications to Ubuntu servers could indicate:</p>
+            <ol>
+                <li>A legitimate but improperly configured software update mechanism</li>
+                <li>A deliberate attempt to mask the identity of the connecting client</li>
+                <li>A custom application that fails to set the User-Agent header</li>
+            </ol>
+            
+            <p>The periodic nature suggests scheduled tasks rather than interactive user activity. Given that these are connections to legitimate Ubuntu servers, this may represent standard system maintenance processes using outdated components rather than malicious activity.</p>
+        </div>
+
+        <div class="pattern">
+            <h3>Pattern 2: TCP Probing and HTTP Connect Activities</h3>
+            
+            <h4>Factual Observations</h4>
+            <ul>
+                <li><strong>Source</strong>: Internal host 192.168.50.189</li>
+                <li><strong>Destinations</strong>: 17.253.17.211 and 17.253.5.208 (Apple Inc. networks)</li>
+                <li><strong>Protocol & Port</strong>: 
+                    <ul>
+                        <li>TCP (protocol type 6) over ports 80 and 443</li>
+                        <li>8 alerts for HTTP_Connect on port 80</li>
+                        <li>8 alerts for TLS on port 80 (unusual port for TLS)</li>
+                        <li>1 alert for TLS on port 443 (standard)</li>
+                    </ul>
+                </li>
+                <li><strong>Alert Types</strong>:
+                    <ul>
+                        <li>"TCP probing attempt" and "Connection refused" in 9 alerts</li>
+                        <li>"Expected on port 443" for TLS traffic on port 80</li>
+                        <li>"Expected on port 8080" for HTTP_Connect traffic</li>
+                        <li>"Empty or missing User-Agent" in HTTP_Connect traffic</li>
+                    </ul>
+                </li>
+                <li><strong>Traffic Patterns</strong>: 
+                    <ul>
+                        <li>Intermittent throughout the day</li>
+                        <li>Significantly larger byte transfers than Pattern 1 (2,000-9,000 bytes)</li>
+                    </ul>
+                </li>
+                <li><strong>DPI Protocol Info</strong>: Mix of "TLS" and "HTTP_Connect, GoogleServices"</li>
+                <li><strong>Severity</strong>: Most alerts have maximum severity score of 150</li>
+            </ul>
+            
+            <p>The communications alternate between connection attempts that are refused and successful connections with substantial data transfer. The traffic shows irregular timing rather than the consistent periodicity seen in Pattern 1.</p>
+            
+            <h4>Potential Interpretations</h4>
+            <p>This pattern presents several unusual characteristics that warrant investigation:</p>
+            
+            <ol>
+                <li>The attempted use of TLS on port 80 instead of the standard port 443 could indicate:
+                    <ul>
+                        <li>Service misconfiguration</li>
+                        <li>Port scanning or service discovery attempts</li>
+                        <li>Intentional evasion of network filtering</li>
+                    </ul>
+                </li>
+                
+                <li>The "HTTP_Connect, GoogleServices" protocol with substantial data transfer to Apple servers is unusual and could represent:
+                    <ul>
+                        <li>Proxy tunneling through an Apple service</li>
+                        <li>A misconfigured application attempting to use Google services via Apple infrastructure</li>
+                        <li>Potential data exfiltration using trusted domains as intermediaries</li>
+                    </ul>
+                </li>
+                
+                <li>The "Connection refused" alerts followed by successful connections suggest:
+                    <ul>
+                        <li>The host may be attempting different communication methods until finding one that works</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
     </div>
-    
-    <div class="ip-intelligence">
+
+    <div class="section">
         <h2>IP Intelligence</h2>
+
+        <h3>Canonical Group Limited IPs (185.125.190.x and 91.189.91.x)</h3>
         
-        <h3>IP Intelligence: 192.168.50.71</h3>
-        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, commonly used in local networks. The IP is flagged as a bogon address, confirming its private network status. Based on the alert patterns, this host is exhibiting concerning behavior as the source of connections to multiple external Canonical (Ubuntu) servers running obsolete nginx versions.</p>
+        <h4>Technical Analysis</h4>
+        <ul>
+            <li><strong>IP Address Range:</strong> 185.125.190.x and 91.189.91.x</li>
+            <li><strong>Ownership:</strong> Canonical Group Limited (AS41231)</li>
+            <li><strong>Location:</strong> 
+                <ul>
+                    <li>185.125.190.1: London, England, United Kingdom</li>
+                    <li>91.189.91.x: Boston, Massachusetts, United States</li>
+                </ul>
+            </li>
+            <li><strong>Hostnames:</strong> vrr.vlan3060.il3-core.canonical.com and other Canonical domains</li>
+            <li><strong>Communication Pattern:</strong> Regular, periodic connections at 5-minute intervals</li>
+            <li><strong>Traffic Volume:</strong> Consistent low volume (355-405 bytes per connection)</li>
+            <li><strong>Alert Count:</strong> Approximately 110 high-severity alerts</li>
+            <li><strong>Alert Types:</strong> Obsolete nginx server 1.14.0/1.18.0, Empty/missing User-Agent</li>
+        </ul>
         
-        <p><strong>Classification</strong>: <span class="critical">Compromised Internal Host / Data Exfiltration Point</span></p>
+        <h4>Organization Profile</h4>
+        <p>Canonical Group Limited is the company behind Ubuntu Linux, one of the most widely-used Linux distributions. They maintain numerous servers worldwide to support Ubuntu update repositories, software distribution networks, and cloud services. The company was founded in 2004 by Mark Shuttleworth and is headquartered in London, UK.</p>
         
-        <p>This internal system appears to be systematically contacting external servers with empty User-Agent headers, a technique often used to bypass detection. The high volume of alerts (102) and maximum severity score (150) indicate this is likely a compromised endpoint being used for data exfiltration or command and control communication. The pattern suggests the host may be part of an APT operation or targeted attack leveraging vulnerabilities in nginx servers for data transfer.</p>
+        <h4>Communication Assessment</h4>
+        <p>The observed traffic pattern shows highly consistent, automated communications occurring at precisely timed 5-minute intervals with almost identical byte counts across sessions. This pattern strongly indicates scheduled system tasks rather than interactive or human-initiated communication.</p>
         
-        <p><strong>Priority</strong>: <span class="critical">Critical</span> - Immediate investigation and isolation recommended.</p>
+        <h4>Threat Assessment - <span class="confidence">MEDIUM CONFIDENCE</span></h4>
+        <p>The observed traffic is likely legitimate Ubuntu system updates or repository checks occurring on a scheduled basis. However, the presence of obsolete nginx server versions (1.14.0/1.18.0) represents a significant security concern as these versions contain known vulnerabilities that could be exploited.</p>
         
-        <h3>IP Intelligence: 192.168.50.189</h3>
-        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, used in local networks and flagged as a bogon address. This host appears in two concerning patterns - as both a connection initiator to Apple services and as a target of internal scanning.</p>
-        
-        <p><strong>Classification</strong>: <span class="high">Potentially Compromised Host / Lateral Movement Target</span></p>
-        
-        <p>The system shows signs of both outbound suspicious communications to Apple servers on non-standard ports and is being targeted by internal scanning from 192.168.50.65. This dual-pattern suggests the host may be compromised and is being used as a pivot point for lateral movement within the network. Empty User-Agent headers in both patterns indicate deliberate attempts to evade detection.</p>
-        
-        <p><strong>Priority</strong>: <span class="high">High</span> - Immediate investigation required to determine if this is an attack pivot point.</p>
-        
-        <h3>IP Intelligence: 192.168.50.65</h3>
-        <p>This is an internal private IP address (RFC 1918) from the 192.168.0.0/16 range, used in local networks and flagged as a bogon address. This host is actively conducting scanning activities against another internal host.</p>
-        
-        <p><strong>Classification</strong>: <span class="high">Internal Threat Actor / Compromised Scanning Host</span></p>
-        
-        <p>This system is conducting targeted scanning against 192.168.50.189 with empty User-Agent headers, suggesting deliberate reconnaissance for lateral movement. While the alert count is lower (3), the maximum severity score remains high (150), indicating the scanning is particularly concerning in nature. This behavior is consistent with advanced persistent threat actors moving laterally after initial compromise.</p>
-        
-        <p><strong>Priority</strong>: <span class="high">High</span> - Immediate investigation and isolation recommended to prevent further lateral movement.</p>
-    </div>
-    
-    <div class="network-analysis">
-        <h2>Network Timing Analysis</h2>
-        
-        <h3>Pattern 1: Obsolete Nginx Server Communications</h3>
-        <p>The network traffic from 192.168.50.71 to multiple external addresses shows a distinct periodic communication pattern with precise 5-minute intervals between HTTP requests (e.g., 14:32:50, 14:27:50, 14:22:50, 14:17:50). This regularity suggests automated communication rather than human-initiated traffic, characteristic of beaconing behavior commonly used in command and control (C2) infrastructure.</p>
-        
-        <p>The data volume exhibits remarkable consistency: the majority of connections show identical byte patterns of 355 bytes IN and 401-405 bytes OUT. This uniform data exchange indicates a standardized communication protocol rather than variable content transfers. The slight difference in outbound bytes (401 vs. 405) may represent different response headers from different server implementations.</p>
-        
-        <p>Interspersed with these HTTP connections are periodic NTP (port 123) connections approximately every 30 minutes, featuring symmetric data exchange (76 bytes both ways). While NTP traffic itself is normal, the timing correlation with the HTTP patterns could suggest time synchronization for coordinated activities.</p>
-        
-        <p>The consistency in both timing and data volume strongly indicates an automated process following a predetermined communication schedule with minimal data exchange, typical of maintaining persistence rather than active data exfiltration.</p>
-        
-        <h3>Pattern 2: Suspicious TCP Probing</h3>
-        <p>The traffic from 192.168.50.189 to Apple services (17.253.x.x addresses) exhibits a distinctive two-phase communication pattern. Each connection pair consists of:</p>
+        <p>The missing User-Agent headers in all communications are unusual for legitimate Ubuntu update processes, which typically include identifiable User-Agent strings. This could indicate:</p>
         
         <ol>
-            <li>An initial data-heavy exchange (2,000-2,250 bytes IN, 7,400-9,744 bytes OUT) with protocol identifier 130.239</li>
-            <li>A follow-up connection approximately 10-18 minutes later with minimal data (219 bytes IN, 40 bytes OUT) and protocol identifier 91</li>
+            <li>A misconfigured update client (most likely)</li>
+            <li>A custom application using non-standard communication methods</li>
+            <li>A potential compromised system using Ubuntu repositories for command and control or data exfiltration (lower probability)</li>
         </ol>
         
-        <p>This pattern repeats throughout the day with varying intervals between pairs (between 2-3 hours), suggesting a scheduled but non-uniform check-in behavior. The significant asymmetry in data volume, particularly in the initial connections where outbound traffic is 3-4.5 times larger than inbound, indicates potential data retrieval rather than data exfiltration.</p>
+        <p><strong>Recommendation:</strong> Update the nginx server components to the latest version and investigate why User-Agent headers are missing from these communications. Implement egress filtering rules to monitor traffic to these destinations for any deviations from the established pattern.</p>
         
-        <p>The consistent small follow-up connections suggest confirmation or acknowledgment messages. The traffic occurring on port 80 rather than the expected 443 for Apple services is particularly anomalous and warrants investigation as potential protocol tunneling.</p>
+        <h3>Apple Inc. IPs (17.253.x.x Range)</h3>
+        
+        <h4>Technical Analysis</h4>
+        <ul>
+            <li><strong>IP Address Range:</strong> 17.253.x.x (specifically 17.253.17.211 and 17.253.5.208)</li>
+            <li><strong>Ownership:</strong> Apple Inc. (AS6185)</li>
+            <li><strong>Location:</strong> 
+                <ul>
+                    <li>17.253.17.211: Santa Clara, California, US</li>
+                    <li>17.253.5.208: San Jose, California, US</li>
+                </ul>
+            </li>
+            <li><strong>Hostnames:</strong> usscz2-vip-bx-011.aaplimg.com, ussjc2-vip-bx-008.aaplimg.com</li>
+            <li><strong>Communication Pattern:</strong> Irregular timing with failed connection attempts</li>
+            <li><strong>Traffic Volume:</strong> Highly variable (60-25,000 bytes)</li>
+            <li><strong>Alert Count:</strong> 17 high-severity alerts</li>
+            <li><strong>Alert Types:</strong> TCP probing attempt, Connection refused, Expected on port 443/8080</li>
+        </ul>
+        
+        <h4>Organization Profile</h4>
+        <p>Apple Inc. is a multinational technology company headquartered in Cupertino, California. The IPs in question belong to Apple's content delivery network (aaplimg.com domain), which hosts various Apple services including software updates, iCloud services, and app store content. AS6185 is a long-established Apple autonomous system (registered in 1995).</p>
+        
+        <h4>Communication Assessment</h4>
+        <p>The traffic pattern shows irregularly timed connections with a mix of successful and failed connection attempts. The asymmetric data transfer ratio (significantly more outbound than inbound data) and unusual port usage (TLS traffic on port 80 instead of 443) indicate potential misconfiguration or non-standard behavior.</p>
+        
+        <p>The association with "HTTP_Connect, GoogleServices" protocol is unusual for Apple infrastructure and could indicate proxy tunneling attempts through Apple's CDN infrastructure.</p>
+        
+        <h4>Threat Assessment - <span class="confidence">HIGH CONFIDENCE</span></h4>
+        <p>The irregular connection patterns, failed connection attempts, and anomalous protocol behavior represent potentially concerning activity that warrants immediate investigation.</p>
     </div>
-    
-    <div class="threat-assessment">
+
+    <div class="section">
+        <h2>Network Timing Analysis</h2>
+
+        <div class="pattern">
+            <h3>Pattern 1: Obsolete nginx Communications</h3>
+            
+            <h4>Timing Patterns</h4>
+            <p>The network traffic between 192.168.50.71 and Canonical Group Limited servers (185.125.190.x and 91.189.91.x) displays a highly consistent, periodic pattern. Communications occur at remarkably regular 5-minute intervals. Each connection is brief, with nearly identical timing characteristics. There is no observable variation in connection timing based on time of day.</p>
+            
+            <h4>Data Volume Patterns</h4>
+            <p>The data transfer volumes show extreme consistency:</p>
+            <ul>
+                <li>Inbound bytes: Consistently 355-419 bytes per connection</li>
+                <li>Outbound bytes: Consistently 401-405 bytes per connection</li>
+                <li>Data ratio: Nearly 1:1 ratio between inbound and outbound traffic</li>
+            </ul>
+            
+            <p>This consistency in byte count (varying by less than 5%) across all communications indicates automated, template-based communications rather than human-initiated or content-variable transfers.</p>
+            
+            <h4>Protocol and Port Usage</h4>
+            <ul>
+                <li>Protocol: Exclusively TCP (protocol 6) for HTTP communications</li>
+                <li>Destination port: Consistently port 80 (HTTP)</li>
+                <li>Source ports: Randomly assigned high ports (30000-65000)</li>
+                <li>L7 Protocol: Consistently "7.169" (HTTP, UbuntuONE)</li>
+            </ul>
+            
+            <h4>Traffic Symmetry</h4>
+            <p>The traffic is remarkably symmetric, with inbound and outbound bytes nearly equal in volume. This is unusual for normal HTTP communications, which typically have asymmetric response-to-request ratios.</p>
+            
+            <h4>Interpretation</h4>
+            <p>The observed pattern strongly indicates an automated update check or scheduled service communication to Ubuntu-related servers. The extreme regularity (5-minute intervals) and consistent byte counts suggest:</p>
+            
+            <ol>
+                <li><strong>Likely explanation</strong>: Scheduled OS updates or repository checks from an Ubuntu system that is using outdated nginx components. The 5-minute interval is consistent with standard cron scheduling, and the byte consistency suggests static health checks or repository index checks.</li>
+                
+                <li><strong>Security concern</strong>: The obsolete nginx servers (versions 1.14.0 and 1.18.0) used in these communications contain known vulnerabilities. While the communication pattern itself appears benign, the outdated components pose a significant security risk.</li>
+                
+                <li><strong>Benign alternative</strong>: This could be a legitimate application using a custom, fixed-content API call on a regular schedule, using components that simply haven't been updated.</li>
+            </ol>
+            
+            <p>The empty User-Agent headers consistently present in these communications are unusual but could be explained by either a simple configuration oversight or a deliberate attempt to minimize identifiable information in regular communications.</p>
+        </div>
+
+        <div class="pattern">
+            <h3>Pattern 2: TCP Probing Activities</h3>
+            
+            <h4>Timing Patterns</h4>
+            <p>The traffic between 192.168.50.189 and Apple servers (17.253.x.x range) shows irregular timing with two distinct sub-patterns:</p>
+            <ol>
+                <li>Successful connections: Sporadic, content-heavy transfers with variable timing</li>
+                <li>Failed connections: Brief connection attempts showing a burst pattern with rapid successive attempts</li>
+            </ol>
+            
+            <p>Unlike Pattern 1, there is no regular periodicity. Multiple connection attempts often occur in clusters (3-5 attempts within a few seconds), followed by periods of inactivity.</p>
+            
+            <h4>Data Volume Patterns</h4>
+            <p>The data volumes show significant variation:</p>
+            <ul>
+                <li>Failed connections: Minimal data transfer (60-120 bytes each direction)</li>
+                <li>Successful connections: Substantial data transfer (5,000-25,000 bytes)</li>
+                <li>Protocol 1 (ICMP) communications: Consistent 1,064 bytes inbound with 0 bytes outbound</li>
+            </ul>
+            
+            <p>The most striking characteristic is the asymmetric data volumes in successful connections, with outbound data (25,000+ bytes) significantly exceeding inbound data (5,500 bytes) - a nearly 5:1 ratio.</p>
+            
+            <h4>Protocol and Port Usage</h4>
+            <ul>
+                <li>Mixed protocol usage: TCP (6), UDP (17), and ICMP (1)</li>
+                <li>Port variations: Connections to standard ports (443) and unexpected ports (80)</li>
+                <li>Connection failures: Both client-side and server-side rejections</li>
+                <li>L7 protocols: Multiple types (91.140, 188, 130.239)</li>
+                <li>High-severity risk: "Expected on port 8080" for HTTP_Connect traffic on different ports</li>
+            </ul>
+            
+            <h4>Traffic Asymmetry</h4>
+            <p>Successful connections show significant asymmetry with 4-5 times more outbound than inbound data, suggesting data retrieval rather than submission.</p>
+            
+            <h4>Interpretation</h4>
+            <p>This pattern exhibits characteristics of both legitimate application behavior and potential security concerns.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Alternative Explanations</h2>
+
+        <p>Security incidents often have non-malicious explanations that may be overlooked during initial analysis. This section evaluates plausible benign interpretations for each observed pattern, assesses evidence strength, and identifies information gaps that need to be addressed.</p>
+
+        <h3>Pattern 1: Obsolete nginx Communications</h3>
+
+        <h4>Alternative Explanation 1: Scheduled Ubuntu System Updates</h4>
+        <p>The consistent 5-minute intervals to Canonical servers strongly suggest this is an automated update check mechanism from an Ubuntu system. The byte count consistency (355-419 bytes inbound, 401-405 bytes outbound) matches the profile of repository index checking rather than malicious activity. The missing User-Agent could simply be a configuration oversight in the update client.</p>
+
+        <h4>Alternative Explanation 2: Legacy Application Maintenance</h4>
+        <p>This could be a legacy internal application that was built using older nginx components and hasn't been updated due to compatibility concerns or resource constraints. The application may be performing regular health checks or data synchronization with Ubuntu repositories. The 5-minute cron job timing is common for monitoring systems.</p>
+
+        <h4>Alternative Explanation 3: Development Environment Traffic</h4>
+        <p>This could represent a development or testing environment where outdated components are deliberately used to match production environments elsewhere. The traffic might be test cases being run against Ubuntu repositories to validate functionality without concern for security in a sandboxed environment.</p>
+
+        <h3>Pattern 2: TCP Probing Activities</h3>
+
+        <h4>Alternative Explanation 1: Mobile Device Synchronization Issues</h4>
+        <p>The irregular timing, connection failures, and Apple server communications strongly suggest an iOS device experiencing synchronization issues. The unusual port usage and HTTP_Connect protocol with "GoogleServices" could indicate a third-party app attempting to use Google services via Apple's infrastructure, with connection reset patterns typical of retry logic when networks are unstable.</p>
+
+        <h4>Alternative Explanation 2: Network Monitoring Tool</h4>
+        <p>The varied protocols, connection attempts, and mix of successful/failed connections could be from a legitimate network monitoring tool checking connectivity to critical services. The tool might be configured to use non-standard ports to test routing policies or firewall rules, with the "TCP probing" representing normal functionality rather than an attack.</p>
+
+        <h4>Alternative Explanation 3: Misconfigured Cloud Application</h4>
+        <p>A cloud-native application with incorrect configuration might be attempting to connect to Apple services on wrong ports or with incorrect protocols. The asymmetric data volumes (5:1 ratio of outbound to inbound) suggest content download rather than data exfiltration.</p>
+
+        <h3>Evidence Assessment</h3>
+
+        <h4>Pattern 1 (Canonical Communications)</h4>
+        <ul>
+            <li><strong>Supporting benign interpretation:</strong> Perfect regularity (5-minute intervals), consistent byte counts, legitimate Ubuntu servers, no data exfiltration indicators</li>
+            <li><strong>Supporting malicious interpretation:</strong> Obsolete nginx versions, missing User-Agent headers</li>
+            <li><strong>Balance of evidence:</strong> The evidence more strongly supports benign automated system updates with outdated components rather than malicious activity</li>
+        </ul>
+
+        <h4>Pattern 2 (Apple Communications)</h4>
+        <ul>
+            <li><strong>Supporting benign interpretation:</strong> Communication with legitimate Apple CDN servers, mixed success/failure patterns consistent with retry logic</li>
+            <li><strong>Supporting malicious interpretation:</strong> Unusual port usage, TCP probing alerts, HTTP_Connect with GoogleServices to Apple infrastructure</li>
+            <li><strong>Balance of evidence:</strong> The irregular pattern needs investigation, but more likely represents application misbehavior than a targeted attack</li>
+        </ul>
+
+        <h3>Confidence Ratings</h3>
+
+        <h4>Pattern 1 Conclusions:</h4>
+        <ul>
+            <li>Automated system update process: <span class="confidence">HIGH confidence</span></li>
+            <li>Security vulnerability from obsolete nginx: <span class="confidence">HIGH confidence</span></li>
+            <li>Malicious intent behind communications: <span class="confidence">LOW confidence</span></li>
+        </ul>
+
+        <h4>Pattern 2 Conclusions:</h4>
+        <ul>
+            <li>Application misconfiguration: <span class="confidence">MEDIUM confidence</span></li>
+            <li>Mobile device synchronization issues: <span class="confidence">MEDIUM confidence</span></li>
+            <li>Deliberate data exfiltration: <span class="confidence">SPECULATIVE confidence</span></li>
+        </ul>
+
+        <h3>Information Gaps</h3>
+
+        <p>To increase assessment confidence, the following additional data would be valuable:</p>
+
+        <ol>
+            <li><strong>Process information</strong>: Which processes on 192.168.50.71 and 192.168.50.189 are initiating these connections?</li>
+            <li><strong>Application inventory</strong>: Are there known applications using these communication patterns?</li>
+            <li><strong>Historical baseline</strong>: Is this traffic pattern new or has it been consistent over time?</li>
+            <li><strong>Full packet capture</strong>: Content analysis of the communications to determine exact nature of requests</li>
+            <li><strong>User-Agent testing</strong>: Would blocking empty User-Agent traffic impact legitimate operations?</li>
+            <li><strong>Organizational context</strong>: Are there Ubuntu systems or Apple devices associated with these IPs?</li>
+            <li><strong>Network segmentation details</strong>: Should these hosts be permitted to make these external connections?</li>
+        </ol>
+
+        <p>These alternative explanations don't eliminate security concerns, particularly the obsolete nginx versions, but they provide reasonable non-malicious interpretations</p>
+    </div>
+
+    <div class="section">
         <h2>Threat Assessment</h2>
-        
-        <p><strong>Overall Severity: <span class="critical">CRITICAL</span></strong></p>
-        
-        <p>The evidence indicates a sophisticated multi-stage attack in active progress. Three internal hosts (192.168.50.71, 192.168.50.189, and 192.168.50.65) exhibit behaviors consistent with an Advanced Persistent Threat (APT) operation utilizing multiple attack vectors. The attacker has established persistent command and control (C2) communication through beaconing mechanisms with highly consistent timing (5-minute intervals) and data volumes (355 bytes IN, 401-405 bytes OUT), signaling operational sophistication.</p>
-        
-        <p>The attack appears to be in mid-stage execution with compromised systems actively communicating with external C2 infrastructure through obsolete nginx servers while simultaneously conducting internal reconnaissance and lateral movement. The use of empty User-Agent headers across multiple connection types indicates deliberate evasion techniques. The involvement of Apple services infrastructure on non-standard ports suggests potential data exfiltration disguised as legitimate traffic.</p>
-        
-        <p>If not immediately addressed, this attack could lead to complete network compromise, sensitive data exfiltration, and potential ransomware deployment across the enterprise. The presence of multiple compromised hosts indicates the attacker has already achieved significant network penetration.</p>
+
+        <p><strong>Overall Severity: <span class="alert-medium">MEDIUM</span> (Medium-High Confidence)</strong></p>
+
+        <p>The network activity presents legitimate security concerns balanced with probable benign explanations. Based on comprehensive analysis of alert patterns, IP intelligence, timing characteristics, and alternative interpretations, this assessment identifies two primary activity clusters requiring different response approaches.</p>
+
+        <h3>Pattern 1: Ubuntu Repository Communications (<span class="alert-medium">MEDIUM</span> Risk)</h3>
+        <p>The highly regular 5-minute interval communications between 192.168.50.71 and Canonical Group Limited servers (Ubuntu repositories) demonstrate classic characteristics of automated system processes rather than malicious activity. The perfect regularity, consistent byte counts (355-419 bytes inbound, 401-405 bytes outbound), and legitimate destination servers strongly suggest scheduled update checks or system maintenance.</p>
+
+        <p>However, significant security concerns exist despite the likely benign purpose:</p>
+        <ul>
+            <li>The obsolete nginx server versions (1.14.0/1.18.0) contain known vulnerabilities</li>
+            <li>The consistent absence of User-Agent headers is unusual for legitimate Ubuntu tools</li>
+            <li>The extreme consistency in timing and data volumes could potentially mask exfiltration</li>
+        </ul>
+
+        <p>Most probable explanation: The pattern represents scheduled Ubuntu system maintenance using outdated components that should be updated but does not indicate compromise.</p>
+
+        <h3>Pattern 2: Apple Service Communications (<span class="alert-medium">MEDIUM-HIGH</span> Risk)</h3>
+        <p>Communications between 192.168.50.189 and Apple CDN infrastructure present more concerning characteristics, including irregular timing, connection failures, unusual port usage (TLS on port 80), and the anomalous presence of "HTTP_Connect, GoogleServices" protocol identifiers when connecting to Apple infrastructure.</p>
+
+        <p>The 5:1 ratio of outbound to inbound data could represent either:</p>
+        <ul>
+            <li>A legitimate application downloading content (benign)</li>
+            <li>Potential data exfiltration using trusted domains (concerning)</li>
+        </ul>
+
+        <p>Unlike Pattern 1, this traffic lacks the consistent predictability of scheduled system tasks and shows characteristics consistent with both application misbehavior and potential security incidents.</p>
+
+        <h3>Potential Impact</h3>
+        <p>If security concerns are valid:</p>
+        <ol>
+            <li>Obsolete nginx servers could provide attackers entry points into the network</li>
+            <li>The irregular Apple communications could represent an existing compromise attempting data exfiltration through trusted domains</li>
+            <li>Missing User-Agent headers could indicate deliberate attempts to evade monitoring</li>
+        </ol>
+
+        <p>In context of typical network behavior, the Ubuntu repository traffic follows expected patterns for automated system processes but uses vulnerable components. The Apple communications show multiple anomalies that deviate from expected application behavior but could be explained by misconfiguration or mobile device synchronization issues.</p>
+
+        <p>This assessment balances security concerns with probable benign explanations, acknowledging that definitive conclusions require further investigation to fill critical information gaps regarding application inventory, process ownership, and historical baselines.</p>
     </div>
-    
-    <div class="recommendations">
+
+    <div class="section">
         <h2>Recommended Actions</h2>
-        
-        <h3>High Priority (Immediate)</h3>
-        
-        <div class="priority-high">
-            <p><strong>1. Isolate Compromised Hosts</strong>: Immediately disconnect hosts 192.168.50.71, 192.168.50.189, and 192.168.50.65 from the network while preserving their volatile memory and system states for forensic analysis.</p>
+
+        <div class="phase">
+            <h3>VERIFICATION PHASE</h3>
+            <ol>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Inspect Ubuntu Update Mechanisms</strong>
+                    <p>Examine the automated update processes on 192.168.50.71 to verify whether they're using obsolete nginx components. Check system logs during 5-minute intervals to confirm process ownership of the Canonical communications.</p>
+                    <p><em>Rationale: Pattern 1 shows consistent 5-minute interval connections to Ubuntu servers, likely benign but using vulnerable components.</em></p>
+                </li>
+                <li><span class="priority-high">High Priority</span> - <strong>Analyze Application Traffic to Apple Services</strong>
+                    <p>Monitor and capture full packet content (where legal) of communications between 192.168.50.189 and Apple CDN servers. Verify device type and installed applications associated with 192.168.50.189.</p>
+                    <p><em>Rationale: Pattern 2 shows irregular timing, unusual port usage, and mixed protocols that need verification before taking disruptive action.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Establish Traffic Baselines</strong>
+                    <p>Compare current communication patterns with historical network data to determine if these traffic patterns are new or long-standing. Review endpoint inventory to confirm expected OS types and applications on the flagged internal IPs.</p>
+                    <p><em>Rationale: Both patterns require baseline context to distinguish between normal operations and potential security incidents.</em></p>
+                </li>
+            </ol>
         </div>
-        
-        <div class="priority-high">
-            <p><strong>2. Block External Communications</strong>: Implement urgent firewall rules to block all connections to identified external IPs (185.125.190.x, 91.189.91.x, 17.253.x.x) while maintaining egress filtering for any HTTP connections with empty User-Agent headers.</p>
+
+        <div class="phase">
+            <h3>CONTAINMENT PHASE</h3>
+            <ol>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Implement Temporary Egress Filtering</strong>
+                    <p>Create monitoring rules to log (but not block) communications with unusual characteristics such as missing User-Agent headers. Apply destination-specific traffic rate limiting for connections to Ubuntu and Apple servers from the identified hosts.</p>
+                    <p><em>Rationale: Addresses the empty User-Agent headers in Pattern 1 and irregular timing in Pattern 2 without disrupting legitimate operations.</em></p>
+                </li>
+                <li><span class="priority-high">High Priority</span> - <strong>Deploy Enhanced Monitoring</strong>
+                    <p>Implement session monitoring for the traffic between 192.168.50.189 and Apple servers, focusing on the HTTP_Connect protocol. Configure alerts for protocol/port mismatches (e.g., TLS on port 80) and connection pattern changes.</p>
+                    <p><em>Rationale: Pattern 2's irregular timing and unusual protocol/port combinations require close monitoring.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Conduct Endpoint Security Scans</strong>
+                    <p>Run targeted vulnerability scans on 192.168.50.71 to identify outdated nginx components and other potential vulnerabilities. Perform endpoint security scans on 192.168.50.189 to check for signs of compromise.</p>
+                    <p><em>Rationale: Addresses the obsolete nginx server alerts in Pattern 1 and potential security concerns in Pattern 2.</em></p>
+                </li>
+            </ol>
         </div>
-        
-        <div class="priority-high">
-            <p><strong>3. Deploy EDR Hunting</strong>: Execute threat hunting across the network focusing on systems communicating with the compromised hosts, particularly looking for beaconing patterns with 5-minute intervals and empty User-Agent headers.</p>
+
+        <div class="phase">
+            <h3>INVESTIGATION PHASE</h3>
+            <ol>
+                <li><span class="priority-high">High Priority</span> - <strong>Perform Process-to-Connection Analysis</strong>
+                    <p>Identify and document which specific processes are initiating the connections to Canonical and Apple servers. Validate that these processes are legitimate and expected on these systems.</p>
+                    <p><em>Rationale: Process identification will clarify whether Pattern 1 is legitimate Ubuntu updates and Pattern 2 is an expected application.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Conduct Application Inventory Review</strong>
+                    <p>Cross-reference active applications with observed traffic patterns to identify which applications may be generating the traffic. Interview system owners regarding expected behavior of applications on these hosts.</p>
+                    <p><em>Rationale: Both patterns could be explained by legitimate but misconfigured applications.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Analyze Data Transfer Patterns</strong>
+                    <p>Examine the content of the asymmetric data transfers in Pattern 2 (5:1 outbound to inbound ratio). Compare byte patterns in Pattern 1 communications against known Ubuntu update mechanisms.</p>
+                    <p><em>Rationale: Determines whether data transfer characteristics match expected application behavior or indicate potential exfiltration.</em></p>
+                </li>
+            </ol>
         </div>
-        
-        <div class="priority-high">
-            <p><strong>4. Collect Memory Images</strong>: Obtain memory dumps from all three compromised hosts before powering them down to preserve potential in-memory malware and encryption keys.</p>
-        </div>
-        
-        <h3>Medium Priority (24-48 Hours)</h3>
-        
-        <div class="priority-medium">
-            <p><strong>1. Conduct Credential Audit</strong>: Force password resets for all accounts that have logged into the compromised systems in the past 30 days and review privileged account activity for signs of credential theft.</p>
-        </div>
-        
-        <div class="priority-medium">
-            <p><strong>2. Implement Network Segmentation</strong>: Enhance network segmentation to limit lateral movement capabilities, particularly between the network segments containing the identified compromised hosts.</p>
-        </div>
-        
-        <div class="priority-medium">
-            <p><strong>3. Patch Nginx Servers</strong>: Identify and update all nginx servers in the environment to current versions, removing any unnecessary external-facing web services.</p>
+
+        <div class="phase">
+            <h3>REMEDIATION PHASE</h3>
+            <ol>
+                <li><span class="priority-high">High Priority</span> - <strong>Update Obsolete Components</strong>
+                    <p>Schedule updates for the obsolete nginx servers (versions 1.14.0/1.18.0) identified in Pattern 1. Test updates in a controlled environment before deploying to production systems.</p>
+                    <p><em>Rationale: Addresses the concrete security vulnerability of outdated nginx components regardless of malicious intent.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Correct Application Configurations</strong>
+                    <p>Reconfigure applications to use appropriate ports and protocols if investigation confirms misconfiguration. Fix User-Agent header settings in automated update processes if legitimate.</p>
+                    <p><em>Rationale: Resolves the protocol anomalies in Pattern 2 and User-Agent issues in Pattern 1 if found to be configuration issues.</em></p>
+                </li>
+                <li><span class="priority-medium">Medium Priority</span> - <strong>Implement Ongoing Monitoring Controls</strong>
+                    <p>Deploy permanent monitoring for empty User-Agent headers and unusual protocol/port combinations. Create automated alerts for communication pattern changes to quickly identify deviations.</p>
+                    <p><em>Rationale: Provides sustainable visibility into network behaviors that triggered the initial alerts.</em></p>
+                </li>
+            </ol>
         </div>
     </div>
 </body>
