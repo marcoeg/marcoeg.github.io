@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Assistant for Caffè Riace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #7b4397 0%, #dc2430 100%);
+      color: #ffffff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .content {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .features {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 20px;
+      width: 30%;
+      text-align: center;
+    }
+
+    .feature h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-button {
+      background-color: #ff7043;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #ff5722;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>AI Assistant for Caffè Riace</h1>
+      <p>
+        Welcome to Caffè Riace — where authentic Italian cuisine meets Silicon Valley sophistication.
+        This AI assistant is here to answer your questions about our menu, catering services, private events,
+        and reservations. We’re here 24/7 to ensure your experience with us is as delightful as our food.
+      </p>
+
+      <div style="background-color: #d96f3d; border-radius: 10px; padding: 20px; margin-top: 30px; text-align: center;">
+        <p style="font-size: 1.4em;  color: #fff2e6;">Start chatting now in your language</p>
+        <div style="display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;">
+          <span style="font-size: 3em;">🇺🇸</span>
+          <span style="font-size: 3em;">🇮🇹</span>
+          <span style="font-size: 3em;">🇪🇸</span>
+          <span style="font-size: 3em;">🇫🇷</span>
+          <span style="font-size: 3em;">🇩🇪</span>
+          <span style="font-size: 3em;">🇯🇵</span>
+          <span style="font-size: 3em;">🇨🇳</span>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <h3>Menu & Events</h3>
+          <p>Learn about our specialties and upcoming gatherings</p>
+        </div>
+        <div class="feature">
+          <h3>Instant Answers</h3>
+          <p>Available anytime you need us</p>
+        </div>
+        <div class="feature">
+          <h3>Multilingual Support</h3>
+          <p>Chat in your preferred language</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+
+    const riaceLogoSvg = `
+      <svg xmlns="http://www.w3.org/2000/svg" width="100" height="50" viewBox="0 0 100 50">
+        <rect width="100" height="50" fill="#872341"/>
+        <text x="50" y="28" font-family="Arial, sans-serif" font-size="14" fill="white" text-anchor="middle">Caffè Riace</text>
+      </svg>
+    `;
+    const riaceLogoDataUrl = "data:image/svg+xml," + encodeURIComponent(riaceLogoSvg);
+
+    Chatbot.init({
+      chatflowid: "1d8fbeaa-9f31-4ee3-af57-2ec878377ffe",
+      apiHost: "https://service.grazianolabs.com",
+      theme: {
+        button: {
+          backgroundColor: "#ff7043",
+          right: 20,
+          bottom: 20,
+          size: 48,
+          dragAndDrop: true,
+          iconColor: "white",
+          customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/restaurant.svg",
+          autoWindowOpen: {
+            autoOpen: true,
+            openDelay: 2,
+            autoOpenOnMobile: false,
+          },
+        },
+        tooltip: {
+          showTooltip: true,
+          tooltipMessage: 'Craving Italian? Ask me anything about Caffè Riace!',
+          tooltipBackgroundColor: '#ff7043',
+          tooltipTextColor: 'white',
+          tooltipFontSize: 16,
+        },
+        chatWindow: {
+          showTitle: true,
+          title: 'Caffè Riace Assistant',
+          titleAvatarSrc: riaceLogoDataUrl,
+          showAgentMessages: true,
+          welcomeMessage: 'Benvenuto! How can I assist you with your visit to Caffè Riace today?',
+          errorMessage: 'Oops! Something went wrong. Please try again.',
+          backgroundColor: "#ffffff",
+          height: 800,
+          width: 600,
+          fontSize: 16,
+          botMessage: {
+            backgroundColor: "#fff4e6",
+            textColor: "#333333",
+            showAvatar: true,
+            avatarSrc: riaceLogoDataUrl,
+          },
+          userMessage: {
+            backgroundColor: "#ff7043",
+            textColor: "#ffffff",
+            showAvatar: true,
+            avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+          },
+          textInput: {
+            placeholder: 'Ask about our menu, events, or hours...',
+            backgroundColor: '#ffffff',
+            textColor: '#303235',
+            sendButtonColor: '#ff7043',
+            maxChars: 200,
+            maxCharsWarningMessage: 'Your message is too long. Please limit it to 200 characters.',
+            autoFocus: true,
+            sendMessageSound: true,
+            receiveMessageSound: true,
+          },
+          feedback: {
+            color: '#303235',
+          },
+          footer: {
+            textColor: '#303235',
+            text: 'Powered by',
+            company: 'Graziano Labs',
+            companyLink: 'https://grazianolabs.com',
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
