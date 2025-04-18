@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Bauplan Documentation Agent</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- highlight.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/styles/github.min.css">
+
+  <!-- marked.js -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: #ffffff;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .content {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <h1>AI Bauplan Documentation Agent</h1>
+      <p>
+        Welcome to the AI-powered Bauplan Documentation Agent. This intelligent chatbot is trained on the official Bauplan SDK documentation for Python, offering instant, accurate answers about methods, classes, and decorators.
+      </p>
+      <img src="https://framerusercontent.com/images/H60BesZJUOLuher0VdbyDorpZw.jpg?scale-down-to=800" alt="Bauplan Logo">
+    </div>
+  </div>
+
+  <!-- Chatbot integration -->
+  <script type="module">
+  import Chatbot from "https://cdn.jsdelivr.net/gh/marcoeg/FlowiseChatEmbed@latest/dist/web.js";
+  import { marked } from "https://cdn.jsdelivr.net/npm/marked/lib/marked.esm.js";
+  import hljs from "https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.8.0/build/es/highlight.min.js";
+  
+  Chatbot.init({
+      chatflowid: "5eb19d82-b55f-4e7d-b405-bf7d1caf3136",
+      apiHost: "https://service.grazianolabs.com",
+      chatflowConfig: {},
+      theme: {
+          button: {
+              backgroundColor: "#4CAF50",
+              right: 20,
+              bottom: 20,
+              size: 48,
+              dragAndDrop: true,
+              iconColor: "white",
+              customIconSrc: "https://framerusercontent.com/images/H60BesZJUOLuher0VdbyDorpZw.jpg?scale-down-to=1024",
+              autoWindowOpen: {
+                  autoOpen: true,
+                  openDelay: 2,
+                  autoOpenOnMobile: false,
+              },
+          },
+          tooltip: {
+              showTooltip: true,
+              tooltipMessage: "Have questions about Bauplan? Ask me!",
+              tooltipBackgroundColor: "#4CAF50",
+              tooltipTextColor: "white",
+              tooltipFontSize: 16,
+          },
+          chatWindow: {
+              showTitle: true,
+              title: 'AI Bauplan Documentation Agent',
+              titleAvatarSrc: "https://framerusercontent.com/images/H60BesZJUOLuher0VdbyDorpZw.jpg?scale-down-to=1024",
+              showAgentMessages: true,
+              welcomeMessage: 'Welcome to the AI-powered Bauplan Documentation Agent! How can I help you today?',
+              backgroundColor: "#ffffff",
+              height: 800,
+              width: 600,
+              fontSize: 16,
+              botMessage: {
+                  backgroundColor: "#f0f8ff",
+                  textColor: "#303235",
+                  showAvatar: true,
+                  avatarSrc: "https://framerusercontent.com/images/H60BesZJUOLuher0VdbyDorpZw.jpg?scale-down-to=1024",
+              },
+              userMessage: {
+                  backgroundColor: "#4CAF50",
+                  textColor: "#ffffff",
+                  showAvatar: true,
+                  avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+              },
+              textInput: {
+                  placeholder: 'Type your question here...',
+                  backgroundColor: '#ffffff',
+                  textColor: '#303235',
+                  sendButtonColor: '#4CAF50',
+                  maxChars: 200,
+                  autoFocus: true,
+              },
+              feedback: {
+                  color: '#303235',
+              },
+              footer: {
+                  textColor: '#303235',
+                  text: 'Powered by',
+                  company: 'Graziano Labs',
+                  companyLink: 'https://grazianolabs.com',
+              }
+          }
+      },
+ 
+    onNewMessage: async (message) => {
+        const chatbot = document.querySelector('#flowise-chatbot');
+        if (!chatbot) return;
+
+        const shadowRoot = chatbot.shadowRoot;
+        if (!shadowRoot) return;
+
+        const botMessages = shadowRoot.querySelectorAll('.chat-message.bot');
+        if (!botMessages.length) return;
+
+        const lastBotMessage = botMessages[botMessages.length - 1];
+
+        if (!lastBotMessage.dataset.customized) {
+            console.log('🔹 BOT RAW FULL MESSAGE:', message.text);
+
+            // Create a new div manually
+            const customDiv = document.createElement('div');
+
+            // Parse the full message (markdown -> HTML)
+            customDiv.innerHTML = marked.parse(message.text);
+
+            // Clear original bad message
+            lastBotMessage.innerHTML = '';
+
+            // Insert our clean parsed HTML
+            lastBotMessage.appendChild(customDiv);
+
+            // Highlight code blocks
+            customDiv.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
+            });
+
+            lastBotMessage.dataset.customized = "true";
+        }
+    }
+
+  });
+  </script>
+  
+
+</body>
+</html>
